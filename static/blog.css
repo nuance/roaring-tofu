@@ -1,0 +1,38 @@
+body { 
+  background-color: #888;
+  font-family: 'Lucida Grande';
+  font-size: 11px;
+}
+
+div.blog { 
+  background-color: #DDD;
+  padding: 10px;
+  width: 775px;
+  margin: 0 auto;
+}
+
+#admin {
+  display: none;
+  font-size: 24px;
+}
+
+div.post { 
+  background-color: #FFF;
+}
+
+div.post-header {
+}
+
+h3.title {
+  font-size: 24px;
+  margin: 10px;
+  text-align: left;
+  width: 75%;
+}
+
+div.time {
+  float: right;
+}
+
+p.body {
+}
