@@ -1,24 +1,24 @@
-from collections import defaultdict
-
 import web
-from web.contrib.template import render_mako
 
+from blog import Blog, app_blog
 import uri
+from util import render_mako
 
-urls = ('/', 'index')
+urls = ('/blog', app_blog,
+		'/', 'index')
+
 app = web.application(urls, globals())
 application = app.wsgifunc()
 
-render = render_mako(directories=['templates'],
-	input_encoding='utf-8', output_encoding='utf-8')
-
-def render_mako(tmpl, *args, **kwargs):
-	template = render._lookup.get_template(tmpl + ".mako")
-	return template.render(*args, **kwargs)
+class blog(object):
+	def GET(self, *args):
+		return "foo %s" % args
 
 class index(object):
 	def GET(self):
-		return render_mako('index', uri=uri, posts=[])
+		posts = Blog.load_posts()
+
+		return render_mako('index', uri=uri, posts=posts)
 
 if __name__ == "__main__":
 	app.run()
