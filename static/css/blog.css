@@ -11,11 +11,6 @@ div.blog {
   margin: 0 auto;
 }
 
-#admin {
-  display: none;
-  font-size: 24px;
-}
-
 div.post { 
   background-color: #FFF;
 }
@@ -23,16 +18,16 @@ div.post {
 div.post-header {
 }
 
-h3.title {
+h3.post_title {
   font-size: 24px;
   margin: 10px;
   text-align: left;
   width: 75%;
 }
 
-div.time {
+div.post_time {
   float: right;
 }
 
-p.body {
+p.post_body {
 }

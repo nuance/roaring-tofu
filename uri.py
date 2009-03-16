@@ -6,8 +6,8 @@ class URIBase(object):
 
 class Static(URIBase):
 	@classmethod
-	def css_link(cls, stylesheet):
-		return cls.link(rel="stylesheet", type="text/css", href="/static/%s" % stylesheet)
+	def css_link(cls, stylesheet, **kwargs):
+		return cls.link(rel="stylesheet", type="text/css", href="/static/css/%s" % stylesheet, **kwargs)
 
 class Blog(URIBase):
 	@classmethod

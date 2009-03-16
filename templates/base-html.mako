@@ -1,8 +1,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<%
+import uri
+
+def css_link(file, **kwargs):
+  return uri.Static.css_link(file, **kwargs)
+%>
+
+<%def name="includes()">
+  ${css_link("blueprint/screen.css", media="screen, projection")}
+  ${css_link("blueprint/print.css", media="print")}
+  <!--[if IE]
+    ${css_link("blueprint/ie.css", media="screen, projection")}
+  <![endif]-->
+  ${next.includes()}
+</%def>
+
 <html>
   <head>
 	<title>${next.title()}</title>
-	${next.includes()}
+	${includes()}
   </head>
   <body>
 	${next.body()}
