@@ -13,6 +13,7 @@ def css_link(file, **kwargs):
   <!--[if IE]
     ${css_link("blueprint/ie.css", media="screen, projection")}
   <![endif]-->
+  ${css_link("blueprint/fancy-type.css", media="screen, projection")}
   ${next.includes()}
 </%def>
 
