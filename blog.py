@@ -44,5 +44,9 @@ class view_post(object):
 	"""
 	def GET(self, id):
 		post = Blog.load_post(int(id))
+		recent_tweet = "foo"
+		commits = []
+		reviews = []
+		articles = []
 
-		return render_mako('index', posts=[post], uri=uri)
+		return render_mako('index', posts=[post], recent_tweet=recent_tweet, commits=commits, reviews=reviews, articles=articles)
