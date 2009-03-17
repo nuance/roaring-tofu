@@ -8,12 +8,12 @@ def css_link(file, **kwargs):
 %>
 
 <%def name="includes()">
-  ${css_link("blueprint/screen.css", media="screen, projection")}
-  ${css_link("blueprint/print.css", media="print")}
+  ${css_link("blueprint/screen.css", media="screen, projection") | n}
+  ${css_link("blueprint/print.css", media="print") | n}
   <!--[if IE]
     ${css_link("blueprint/ie.css", media="screen, projection")}
   <![endif]-->
-  ${css_link("blueprint/fancy-type.css", media="screen, projection")}
+  ${css_link("blueprint/fancy-type.css", media="screen, projection") | n}
   ${next.includes()}
 </%def>
 

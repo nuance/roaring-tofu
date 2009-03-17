@@ -1,8 +1,9 @@
 import web
 
-from blog import Blog, app_blog
+from blog import app_blog, render_blog
+from objects.post import Post
 import uri
-from util import render_mako
+from util import read_conn, render_mako
 
 urls = ('/blog', app_blog,
 		'/', 'index')
@@ -10,15 +11,11 @@ urls = ('/blog', app_blog,
 app = web.application(urls, globals())
 application = app.wsgifunc()
 
-class blog(object):
-	def GET(self, *args):
-		return "foo %s" % args
-
 class index(object):
 	def GET(self):
-		posts = Blog.load_posts()
+		posts = Post.select_by_range(read_conn, 0, 5)
 
-		return render_mako('index', uri=uri, posts=posts)
+		return render_blog(posts=posts)
 
 if __name__ == "__main__":
 	app.run()
