@@ -15,7 +15,7 @@ def batch(fun):
 	return fun
 
 read_conn = create_engine('sqlite:///blog.sqlite', echo=True)
-meta = MetaData()
+meta = MetaData(read_conn)
 
 if __name__ == "__main__":
 	# force all the tables to be created

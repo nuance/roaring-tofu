@@ -1,7 +1,6 @@
 import rst
-import sqlalchemy
 from sqlalchemy import Table, Column, DateTime, Integer, String
-from sqlalchemy.sql import func, select, and_
+from sqlalchemy.sql import func, and_
 
 from util import batch, meta
 
@@ -23,23 +22,29 @@ class Post(object):
 		self.date_modified = date_modified
 
 	@batch
-	def commit(self, conn):
-		conn.execute(posts.insert(), id=self.id, title=self.title, file_name=self.file_name, date_created=self.date_created, date_modified=self.date_modified)
+	def commit(self):
+		posts.insert().execute(id=self.id, title=self.title,
+							   file_name=self.file_name,
+							   date_created=self.date_created,
+							   date_modified=self.date_modified)
 
 	@classmethod
-	def _select(cls, conn, expr):
-		rows = conn.execute(select([posts], and_(*expr)))
-		return [Post(*row) for row in rows]
+	def _select(cls, expr):
+		result = posts.select(and_(*expr)).execute()
+		row = result.fetchone()
+		return [Post(row[posts.c.id], row[posts.c.title],
+					 row[posts.c.file_name], row[posts.c.time_created],
+					 row[posts.c.time_modified])]
 
 	@classmethod
-	def select_by_id(cls, conn, id):
+	def select_by_id(cls, id):
 		expr = [cls.c.id == id]
-		return cls._select(conn, expr)
+		return cls._select(expr)
 
 	@classmethod
-	def select_by_range(cls, conn, min_id, max_id):
+	def select_by_range(cls, min_id, max_id):
 		expr = [cls.c.id >= min_id, cls.c.id <= max_id]
-		return cls._select(conn, expr)
+		return cls._select(expr)
 
 	@property
 	def updated(self):
