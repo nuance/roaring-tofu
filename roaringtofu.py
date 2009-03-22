@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 import web
 
 from blog import app_blog, render_blog
+import config
 from model import Post, init_model, meta
 
 urls = ('/blog', app_blog,
@@ -9,7 +10,7 @@ urls = ('/blog', app_blog,
 
 app = web.application(urls, globals())
 application = app.wsgifunc()
-read_conn = create_engine('sqlite:///blog.sqlite', echo=True)
+read_conn = create_engine(config.engine_url, **config.engine_params)
 init_model(read_conn)
 
 class index(object):
