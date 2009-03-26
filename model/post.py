@@ -35,7 +35,7 @@ class Post(object):
 
 	@property
 	def updated(self):
-		return bool(self.time_modified)
+		return self.time_modified != self.time_created
 
 	@property
 	def date_created(self):
