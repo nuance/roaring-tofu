@@ -77,7 +77,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
     	    </span>
     	    <div class="post_time">Posted ${post.date_created}</div>
         </div>
-    	  <p class="post_body">${post.body_html}</p>
+    	  <p class="post_body">${post.content | n}</p>
     	  % if post.updated:
           <em>Updated: ${post.date_modified}</em>
     	  % endif

@@ -7,22 +7,31 @@ import meta
 t_post = Table("post", meta.metadata,
 			   Column("id", types.Integer, primary_key=True),
 			   Column("title", types.String, nullable=False),
+			   Column("name", types.String, nullable=False),
+			   Column("content", types.String, nullable=False),
 			   Column("file_name", types.String, nullable=False),
 			   Column('time_created', types.DateTime, default=func.current_timestamp(), nullable=False),
 			   Column('time_modified', types.DateTime, default=None, nullable=True))
 
 class Post(object):
-	def __init__(self, title, file_name):
+	def __init__(self, title, file_name, name=None, time_created=None, time_modified=None):
 		self.title = title
 		self.file_name = file_name
+
+		self.name = name
+		self.time_created = time_created
+		self.time_modified = time_modified
+		self.id = None
 
 		try:
 			open("blog-posts/%s" % self.file_name)
 		except IOError:
 			raise Exception("No blog post file found for file name %s, cancelling add" % self.file_name)
 
+		self.content = self.body_html
+
 	def __repr__(self):
-		return "<Post(title='%s', |file_name|=%d, updated=%r)>" % (self.title, len(self.file_name), self.updated)
+		return "<Post(id=%d, title='%s', |file_name|=%d, updated=%r)>" % (self.id, self.title, len(self.file_name), self.updated)
 
 	@property
 	def updated(self):
@@ -39,8 +48,8 @@ class Post(object):
 	@property
 	def body_html(self):
 		try:
-			content = open("blog-posts/%s" % self.file_name).readlines()
-			return rst.html_body(unicode(self.content))
+			content = open("blog-posts/%s" % self.file_name).read()
+			return rst.html_body(unicode(content))
 		except IOError:
 			return ''
 

@@ -18,7 +18,7 @@ class view_post(object):
 	Blog servlet
 	"""
 	def GET(self, id):
-		post = meta.session.query(Post, Post.id == id).all()
+		post = meta.session.query(Post).filter(Post.id == id).all()
 
 		if not post:
 			# 404

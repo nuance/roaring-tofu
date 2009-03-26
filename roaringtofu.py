@@ -15,7 +15,7 @@ init_model(read_conn)
 
 class index(object):
 	def GET(self):
-		posts = meta.session.query(Post).order_by(Post.id).limit(5).all()
+		posts = meta.session.query(Post).order_by(Post.time_created.desc()).limit(5).all()
 
 		return render_blog(posts=posts)
 

@@ -17,6 +17,8 @@ class AddPost(Batch):
 		meta.session.add(post)
 		meta.session.commit()
 
+		print "Added blog post %s" % meta.session.query(Post).filter(Post.id == post.id).all()
+
 if __name__ == "__main__":
 	batch = AddPost()
 	batch.start()
