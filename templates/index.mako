@@ -76,11 +76,13 @@ view_post = lambda post_id: Blog.view_post(post_id)
     	    <a href="${view_post(post.id)}">permalink</a>
     	  </span>
         </div>
-    	<div class="post_time">Posted ${post.date_created}</div>
+    	<div class="post_time">
+		  Posted ${post.date_created}
+     	  % if post.updated:
+            <em>Updated: ${post.date_modified}</em>
+    	  % endif
+		</div>
     	<p class="post_body">${post.content | n}</p>
-    	% if post.updated:
-          <em>Updated: ${post.date_modified}</em>
-    	% endif
       </div>
     % endfor
   </div>
