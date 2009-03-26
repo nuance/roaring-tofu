@@ -35,7 +35,8 @@ class ImportPosts(Batch):
 			if modified:
 				time_modified = datetime.datetime.strptime(modified, "%Y-%m-%d %H:%M:%S")
 
-			content_filename = "blog-posts/%s-%s" % (time_created.strftime("%Y-%m-%d"), name)
+			file_name = "%s-%s" % (time_created.strftime("%Y-%m-%d"), name)
+			content_filename = "blog-posts/%s" % file_name
 			print title, name, content_filename
 
 			with open(content_filename, "w") as blog_content_file:
@@ -55,7 +56,7 @@ class ImportPosts(Batch):
 			with open(content_filename, "w") as blog_content_file:
 				blog_content_file.write(markdown_content)
 
-			post = Post(title, name, name=name, time_created=time_created, time_modified=time_modified)
+			post = Post(title, file_name, name=name, time_created=time_created, time_modified=time_modified)
 			meta.session.add(post)
 			meta.session.commit()
 
