@@ -29,7 +29,10 @@ class Tweet(object):
 		return uri.Twitter.tweet_url(self.user, self.status_id)
 
 	@classmethod
-	def tweet_for_headline(cls):
-		return meta.session.query(cls).filter(not_(cls.text.like("@%"))).order_by(cls.time_created.desc()).limit(1).all()[0]
+	def tweet_for_headline(cls, show_replies=False):
+		query = meta.session.query(cls).order_by(cls.time_created.desc())
+		if not show_replies:
+			query = query.filter(not_(cls.text.like("@%")))
+		return query.limit(1).all()[0]
 
 orm.mapper(Tweet, t_tweet)
