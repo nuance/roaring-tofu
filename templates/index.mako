@@ -9,6 +9,7 @@
 
 <%!
 from uri import Blog
+import util
 
 view_post = lambda post_id: Blog.view_post(post_id)
 %>
@@ -26,8 +27,9 @@ view_post = lambda post_id: Blog.view_post(post_id)
   <div class="span-5 colborder">
     <h6>Recent Tweet</h6>
     <p class="incr small" style="padding-left:8px;">
-      <span class="dquo">&#8220;</span>${recent_tweet}&#8221;
-      <a href="foo">link</a>
+      <span class="dquo">&#8220;</span>${recent_tweet.text}&#8221;<br/>
+      - ${util.relative_time(recent_tweet.time_created)}&nbsp;&nbsp;
+	  <a href="${recent_tweet.link | n}">link</a>
     </p>
   </div>
 

@@ -1,14 +1,15 @@
 import web
 
-from model import Post, meta
+from model import Post, Tweet, meta
 from util import render_mako
 
 urls = ('/view/(\d+)', 'view_post')
 app_blog = web.application(urls, globals())
 
-def render_blog(posts=[], recent_tweet="foo", commits=[], reviews=[], articles=[]):
+def render_blog(posts=[], commits=[], reviews=[], articles=[]):
+	tweet = Tweet.tweet_for_headline()
 	return render_mako('index', posts=posts,
-					   recent_tweet=recent_tweet,
+					   recent_tweet=tweet,
 					   commits=commits,
 					   reviews=reviews,
 					   articles=articles)

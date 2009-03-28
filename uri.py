@@ -13,3 +13,8 @@ class Blog(URIBase):
 	@classmethod
 	def view_post(cls, post_id):
 		return "/blog/view/%s" % post_id
+
+class Twitter(URIBase):
+	@classmethod
+	def tweet_url(cls, user, tweet_id):
+		return "http://twitter.com/%(user)s/status/%(tweet_id)d" % locals()

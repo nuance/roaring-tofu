@@ -1,6 +1,7 @@
 import sqlalchemy
 import meta
 from post import Post
+from tweet import Tweet
 
 def init_model(engine):
 	"""Call me before using any of the tables or classes in the model."""
