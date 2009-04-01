@@ -1,4 +1,5 @@
 import datetime
+import re
 
 from web.contrib.template import render_mako
 
@@ -29,3 +30,20 @@ def relative_time(date):
 		return "%d week%s ago" % (abs(diff.days) / 7, "s" if (diff.days / 7) < -1 else "")
 	else:
 		return "on %s" % date.strftime("%m/%d/%Y")
+
+def _link(frmt, group=1):
+	def _sub_fn(match):
+		groups = dict((str(k), v) for k, v in enumerate(match.groups()))
+		return frmt % groups
+	return _sub_fn
+
+def linkify_tweet(text):
+	url_re = "(http?:\/\/\S+)"
+	user_re = "(^|\s)@(\w+)"
+	tag_re = "(^|\s)#(\w+)"
+
+	text = re.sub(url_re, _link("<a rel=\"nofollow\" href=\"%(0)s\">%(0)s</a>"), text)
+	text = re.sub(user_re, _link("<a rel=\"nofollow\" href=\"http://twitter.com/%(1)s\">@%(1)s</a>"), text)
+	text = re.sub(tag_re, _link("<a rel=\"nofollow\" href=\"http://search.twitter.com/search?q=%(1)s\">#%(1)s</a>"), text)
+
+	return text

@@ -29,7 +29,7 @@ class Tweet(object):
 		return uri.Twitter.tweet_url(self.user, self.status_id)
 
 	@classmethod
-	def tweet_for_headline(cls, show_replies=False):
+	def recent_tweet(cls, show_replies=False):
 		query = meta.session.query(cls).order_by(cls.time_created.desc())
 		if not show_replies:
 			query = query.filter(not_(cls.text.like("@%")))

@@ -7,7 +7,7 @@ urls = ('/view/(\d+)', 'view_post')
 app_blog = web.application(urls, globals())
 
 def render_blog(posts=[], commits=[], reviews=[], articles=[]):
-	tweet = Tweet.tweet_for_headline()
+	tweet = Tweet.recent_tweet()
 	return render_mako('index', posts=posts,
 					   recent_tweet=tweet,
 					   commits=commits,
