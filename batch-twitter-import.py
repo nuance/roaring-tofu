@@ -28,7 +28,7 @@ class ImportTweets(Batch):
 			meta.session.add(tweet)
 
 		meta.session.commit()
-		print "Import %d new statuses" % len(tweets)
+		print "Imported %d new statuses" % len(tweets)
 
 if __name__ == "__main__":
 	batch = ImportTweets()

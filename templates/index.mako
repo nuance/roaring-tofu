@@ -24,7 +24,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   <!-- Action Boxes -->
   
   <!-- Twitter feed -->
-  <div class="span-5 colborder">
+  <div class="span-6 colborder">
     <h6>Recent Tweet</h6>
     <p class="incr small" style="padding-left:8px;">
       <span class="dquo">&#8220;</span>${recent_tweet.text | util.linkify_tweet}&#8221;<br/>
@@ -34,7 +34,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   </div>
 
   <!-- Github commits -->
-  <div class="span-5 colborder">
+  <div class="span-7 colborder">
     <h6>Recent Commits</h6>
     <p class="incr">
       % for commit in commits:
@@ -44,7 +44,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   </div>
 
   <!-- Yelp reviews -->
-  <div class="span-6 colborder">
+  <div class="span-7 colborder">
     <h6>Recent Reviews</h6>
     <p class="incr">
       % for review in reviews:
@@ -54,22 +54,11 @@ view_post = lambda post_id: Blog.view_post(post_id)
     </p>
   </div>
 
-  <!-- del.icio.us-style article syndication -->
-  <div class="span-5 last">
-    <h6>Recently Read</h6>
-    <p class="incr">
-      % for article in articles:
-        <span class="span-1"><img src="${article.site_favicon}" alt="${article.site_name}" class="favicon"/></span>
-        ${article.title} - <a href="${article.url}">(${article.domain})</a> - ${article.date}<br/>
-      % endfor
-    </p>
-  </div>
-
   <hr/>
   <hr class="space"/>
 
   <!-- The blog -->
-  <div class="blog span-18 colborder">
+  <div class="blog span-16 colborder">
     % for post in posts:
       <div class="post">
         <div class="post-header">
@@ -90,7 +79,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   </div>
   
   <!-- Side bar -->
-  <div id="sidebar" class="rightbar span-5 last">
+  <div id="sidebar" class="rightbar span-6 last">
     
     <!-- About me -->
     <div id="aboutme" class="box">
@@ -99,6 +88,18 @@ view_post = lambda post_id: Blog.view_post(post_id)
       <p>I'm a recent Berkeley grad working at Yelp. In the computer world I'm most excited by machine learning and natural language processing (especially of the bayesian and unsupervised variety), low-level performance tricks, and cool hacks.</p>
       <p>In the real world, I love to cook, travel and I'm getting back into rock climbing.</p>
     </div>
+    <hr class="space"/>
+
+	<!-- del.icio.us-style article syndication -->
+	<div id="articles" class="box">
+      <h6>Recently Read</h6>
+      <p class="incr">
+		% for article in articles:
+          <span class="span-1"><img src="${article.favicon | n}" alt="${article.domain}" class="favicon"/></span>
+          ${article.title} - <a href="${article.url}">(${article.domain})</a> - ${util.relative_time(article.time_added)}<br/>
+		% endfor
+      </p>
+	</div>
     <hr class="space"/>
     
     <!-- Post Index / Calendar -->

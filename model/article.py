@@ -1,4 +1,5 @@
 import datetime
+import urllib2, urlparse
 
 from sqlalchemy import Table, Column, func, types
 from sqlalchemy import orm
@@ -28,9 +29,19 @@ class Article(object):
 	def link(self):
 		return uri.a(self.url, self.title)
 
+	@property
+	def domain(self):
+		return urlparse.urlparse(self.url).hostname
+
+	@property
+	def favicon(self):
+		# FIXME: hack
+		return "http://" + urlparse.urlparse(self.url).hostname + "/favicon.ico"
+
 	@classmethod
 	def recent_articles(cls, number=5):
 		query = meta.session.query(cls).order_by(cls.time_added.desc())
 		return query.limit(number).all()
+
 
 orm.mapper(Article, t_article)
