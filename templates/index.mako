@@ -17,14 +17,14 @@ view_post = lambda post_id: Blog.view_post(post_id)
 <div class="container">
 
   <!-- Header -->
-  <div class="span-8"><h1>The Book of Jones</h1></div>
-  <div class="span-10 quiet" style="padding-top:3px;"><h2>Cooking, travel, and techno-babble</h2></div>
+  <div class="push-1 span-8"><h1>The Book of Jones</h1></div>
+  <div class="push-1 span-10 quiet" style="padding-top:3px;"><h2>Cooking, travel, and techno-babble</h2></div>
   <hr class="space"/>
 
   <!-- Action Boxes -->
   
   <!-- Twitter feed -->
-  <div class="span-6 colborder">
+  <div class="push-1 span-6 colborder">
     <h6>Recent Tweet</h6>
     <p class="incr small" style="padding-left:8px;">
       <span class="dquo">&#8220;</span>${recent_tweet.text | util.linkify_tweet}&#8221;<br/>
@@ -38,13 +38,13 @@ view_post = lambda post_id: Blog.view_post(post_id)
     <h6>Recent Commits</h6>
     <p class="incr">
       % for commit in commits:
-        <a href="${commit.url}">${commit.project}</a> - ${commit.message} - ${commit.date}<br/>
+        <a href="${commit.url | n}">${commit.project}</a> - ${commit.message} - ${util.relative_time(commit.time_authored)}<br/>
       % endfor
     </p>
   </div>
 
   <!-- Yelp reviews -->
-  <div class="span-7 colborder">
+  <div class="span-6 colborder">
     <h6>Recent Reviews</h6>
     <p class="incr">
       % for review in reviews:
@@ -58,7 +58,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   <hr class="space"/>
 
   <!-- The blog -->
-  <div class="blog span-16 colborder">
+  <div class="blog push-1 span-15 colborder">
     % for post in posts:
       <div class="post">
         <div class="post-header">

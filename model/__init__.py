@@ -1,6 +1,7 @@
 import sqlalchemy
 import meta
 from article import Article
+from commit import Commit
 from post import Post
 from tweet import Tweet
 
