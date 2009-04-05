@@ -22,14 +22,14 @@ view_post = lambda post_id: Blog.view_post(post_id)
   <hr class="space"/>
 
   <!-- Action Boxes -->
-  
+
   <!-- Twitter feed -->
   <div class="push-1 span-6 colborder">
     <h6>Recent Tweet</h6>
     <p class="incr small" style="padding-left:8px;">
       <span class="dquo">&#8220;</span>${recent_tweet.text | util.linkify_tweet}&#8221;<br/>
       - ${util.relative_time(recent_tweet.time_created)}&nbsp;&nbsp;
-	  <a href="${recent_tweet.link | n}">link</a>
+	  <a href="${recent_tweet.link | n}" rel="nofollow">link</a>
     </p>
   </div>
 
@@ -38,7 +38,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
     <h6>Recent Commits</h6>
     <p class="incr">
       % for commit in commits:
-        <a href="${commit.url | n}">${commit.project}</a> - ${commit.message} - ${util.relative_time(commit.time_authored)}<br/>
+        <a href="${commit.url | n}" rel="nofollow">${commit.project}</a> - ${commit.message} - ${util.relative_time(commit.time_authored)}<br/>
       % endfor
     </p>
   </div>
@@ -49,7 +49,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
     <p class="incr">
       % for review in reviews:
         <img src="${review.stars_img}" alt="${review.stars_alt_text}">
-        <a href="${review.url}">${review.biz_name}</a> - ${review.snippet} - ${review.date}<br/>
+        <a href="${review.url}" rel="nofollow">${review.biz_name}</a> - ${review.snippet} - ${review.date}<br/>
       % endfor
     </p>
   </div>
@@ -96,7 +96,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
       <p class="incr">
 		% for article in articles:
           <span class="span-1"><img src="${article.favicon | n}" alt="${article.domain}" class="favicon"/></span>
-          ${article.title} - <a href="${article.url}">(${article.domain})</a> - ${util.relative_time(article.time_added)}<br/>
+          ${article.title} - <a href="${article.url}" rel="nofollow">(${article.domain})</a> - ${util.relative_time(article.time_added)}<br/>
 		% endfor
       </p>
 	</div>
