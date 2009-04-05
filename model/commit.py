@@ -30,7 +30,7 @@ class Commit(object):
 
 	@classmethod
 	def recent_commits(cls, number=3):
-		query = meta.session.query(cls).order_by(cls.time_authored.desc())
+		query = meta.session.query(cls).group_by(cls.project).order_by(cls.time_authored.desc())
 		return query.limit(number).all()
 
 orm.mapper(Commit, t_commit)
