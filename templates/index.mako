@@ -48,8 +48,8 @@ view_post = lambda post_id: Blog.view_post(post_id)
     <h6>Recent Reviews</h6>
     <p class="incr">
       % for review in reviews:
-        <img src="${review.stars_img}" alt="${review.stars_alt_text}">
-        <a href="${review.url}" rel="nofollow">${review.biz_name}</a> - ${review.snippet} - ${review.date}<br/>
+        <img src="${review.stars_img | n}" alt="${review.rating}/5 stars">
+        <a href="${review.url | n}" rel="nofollow">${review.business}</a> - ${review.snippet} - ${util.relative_time(review.time_authored) }<br/>
       % endfor
     </p>
   </div>

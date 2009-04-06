@@ -29,7 +29,7 @@ def relative_time(date):
 	elif abs(diff.days) < 28:
 		return "%d week%s ago" % (abs(diff.days) / 7, "s" if (diff.days / 7) < -1 else "")
 	else:
-		return "on %s" % date.strftime("%m/%d/%Y")
+		return "on %s" % date.strftime("%B %e")
 
 def _link(frmt, group=1):
 	def _sub_fn(match):

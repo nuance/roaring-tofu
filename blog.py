@@ -1,14 +1,15 @@
 import web
 
-from model import Article, Commit, Post, Tweet, meta
+from model import Article, Commit, Post, Review, Tweet, meta
 from util import render_mako
 
 urls = ('/view/(\d+)', 'view_post')
 app_blog = web.application(urls, globals())
 
-def render_blog(posts=[], reviews=[]):
+def render_blog(posts=[]):
 	articles = Article.recent_articles()
 	commits = Commit.recent_commits()
+	reviews = Review.recent_reviews()
 	tweet = Tweet.recent_tweet()
 
 	return render_mako('index', posts=posts,

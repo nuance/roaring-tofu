@@ -3,6 +3,7 @@ import meta
 from article import Article
 from commit import Commit
 from post import Post
+from review import Review
 from tweet import Tweet
 
 def init_model(engine):
