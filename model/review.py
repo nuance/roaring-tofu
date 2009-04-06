@@ -29,7 +29,7 @@ class Review(object):
 		return set(review.url for review in meta.session.query(cls).all())
 
 	@classmethod
-	def recent_reviews(cls, number=3):
+	def recent_reviews(cls, number=2):
 		query = meta.session.query(cls).group_by(cls.business).order_by(cls.time_authored.desc())
 		return query.limit(number).all()
 
