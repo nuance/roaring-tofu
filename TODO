@@ -4,8 +4,10 @@
 ** TODO Default favicon for articles							   :template:
 ** TODO Me photo													   :data:
 ** TODO Bottom box - What to do with it?						   :template:
-** TODO Pictures?													  :batch:
-** DONE Paging											  :servlet::template:
+** TODO Pictures on blog posts? 									  :batch:
+** DONE Paging														:servlet:
+** DONE Paging Styling											   :template:
 ** TODO Macro-import script											  :batch:
+** TODO Permalink style											   :template:
 ** TODO Lines on top bar										   :template:
 ** DONE Spacing on yelp stars									   :template:

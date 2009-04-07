@@ -1,4 +1,6 @@
 <%inherit file="base-html.mako"/>
+<%namespace name="base" file="base-html.mako"/>
+
 <%def name="title()">My blog</%def>
 
 <%def name="includes()">
@@ -8,6 +10,7 @@
   div.header { margin-bottom: 0px; }
   div.subheader { margin-bottom: 0px; padding-top: 3px; }
   p.indent { margin-left: 8px; }
+  .pager { text-align: right; }
 </style>
 </%def>
 
@@ -64,6 +67,10 @@ view_post = lambda post_id: Blog.view_post(post_id)
 
   <!-- The blog -->
   <div class="blog push-05 span-15 colborder">
+	<div class="pager">
+	  ${base.pager("/", "/%d", start, end, prev, next, total)}
+	</div>
+
     % for post in posts:
       <div class="post">
         <div class="post-header">
@@ -74,7 +81,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
         </div>
     	<div class="post_time">
 		  Posted ${post.date_created}
-     	  % if post.updated:
+     	  % if post.updated and post.date_created != post.date_modified:
             <em>Updated: ${post.date_modified}</em>
     	  % endif
 		</div>
@@ -83,16 +90,9 @@ view_post = lambda post_id: Blog.view_post(post_id)
     % endfor
 
 	<div class="pager">
-	  % if prev:
-	    <a href="/${prev}">prev</a> &nbsp;|&nbsp;
-	  % elif prev == 0:
-	    <a href="/">prev</a> &nbsp;|&nbsp;
-	  % endif>
-	  ${start} - ${end}
-	  % if next:
-	    &nbsp;|&nbsp; <a href="/${next}">next</a>
-	  % endif
+	  ${base.pager("/", "/%d", start, end, prev, next, total)}
 	</div>
+
   </div>
   
   <!-- Side bar -->

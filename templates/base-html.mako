@@ -17,6 +17,19 @@ def css_link(file, **kwargs):
   ${next.includes()}
 </%def>
 
+<%def name="pager(base_url, url, start, end, prev, next, total)">
+  % if prev:
+    <a href="${url % prev}">prev</a> &nbsp;|&nbsp;
+  % elif prev == 0:
+	<a href="${base_url}">prev</a> &nbsp;|&nbsp;
+  % endif>
+  ${start} - ${end} of ${total}
+  % if next:
+    &nbsp;|&nbsp; <a href="${url % next}">next</a>
+  % endif
+</%def>
+
+
 <html>
   <head>
 	<title>${next.title()}</title>

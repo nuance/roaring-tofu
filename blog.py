@@ -28,7 +28,8 @@ def render_blog(posts=[], offset=0, post_count=1, rpp=5):
 					   start=offset,
 					   end=offset + len(posts),
 					   prev=prev,
-					   next=next)
+					   next=next,
+					   total=post_count)
 
 
 class view_post(object):
