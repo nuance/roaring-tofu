@@ -1,7 +1,7 @@
 -*- mode:org -*-
 * First Release
 ** DONE Fix extra spacing on home								   :template:
-** TODO Default favicon for articles							   :template:
+** DONE Default favicon for articles							   :template:
 ** TODO Me photo													   :data:
 ** TODO Bottom box - What to do with it?						   :template:
 ** TODO Pictures on blog posts? 									  :batch:

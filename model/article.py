@@ -1,9 +1,8 @@
 import datetime
-import urllib2, urlparse
+import urlparse
 
-from sqlalchemy import Table, Column, func, types
+from sqlalchemy import Table, Column, types
 from sqlalchemy import orm
-from sqlalchemy.sql import not_, select
 
 import meta
 import uri
@@ -35,7 +34,6 @@ class Article(object):
 
 	@property
 	def favicon(self):
-		# FIXME: hack
 		return "http://" + urlparse.urlparse(self.url).hostname + "/favicon.ico"
 
 	@classmethod
