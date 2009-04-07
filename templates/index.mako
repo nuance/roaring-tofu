@@ -13,6 +13,8 @@
   .pager { text-align: center; }
   .post-title { display: inline; }
   .title-permalink { float:right; margin-top: 12px; }
+  hr.thin { margin-bottom: 9px; margin-top: 9px; }
+  div.top-box { height: 90px; margin-bottom: 9px;}
 </style>
 </%def>
 
@@ -33,7 +35,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   <!-- Action Boxes -->
 
   <!-- Yelp reviews -->
-  <div class="push-05 span-7 colborder first">
+  <div class="push-05 span-7 colborder first top-box">
     <h6>Recent Reviews</h6>
     <p class="incr">
       % for review in reviews:
@@ -46,7 +48,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   </div>
 
   <!-- Github commits -->
-  <div class="span-7 colborder">
+  <div class="span-7 colborder top-box">
     <h6>Recent Commits</h6>
     <p class="incr">
       % for commit in commits:
@@ -56,7 +58,7 @@ view_post = lambda post_id: Blog.view_post(post_id)
   </div>
 
   <!-- Twitter feed -->
-  <div class="span-6 last">
+  <div class="span-6 last top-box">
     <h6>Recent Tweet</h6>
     <p class="incr small indent">
       <span class="dquo">&#8220;</span>${recent_tweet.text | util.linkify_tweet}&#8221;<br/>
