@@ -1,11 +1,11 @@
 -*- mode:org -*-
 * First Release
-** DONE Fix extra spacing on home
-** TODO Default favicon for articles
-** TODO Me photo
-** TODO Bottom box - What to do with it?
-** TODO Pictures?
-** TODO Paging
-** TODO Macro-import script
-** TODO Lines on top bar
-** DONE Spacing on yelp stars
+** DONE Fix extra spacing on home								   :template:
+** TODO Default favicon for articles							   :template:
+** TODO Me photo													   :data:
+** TODO Bottom box - What to do with it?						   :template:
+** TODO Pictures?													  :batch:
+** TODO Paging											  :servlet::template:
+** TODO Macro-import script											  :batch:
+** TODO Lines on top bar										   :template:
+** DONE Spacing on yelp stars									   :template:
