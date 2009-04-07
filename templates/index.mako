@@ -113,10 +113,5 @@ css_link = Static.css_link
       </p>
 	</div>
     <hr class="space"/>
-    
-    <!-- Post Index / Calendar -->
-    <div id="blogindex" class="box">
-      Do I want a blog archive thing here? They look kind of ugly. A calendar might be kind of slick, though...
-    </div>
   </div>
 </div>
