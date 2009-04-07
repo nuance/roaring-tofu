@@ -1,33 +1,15 @@
-body { 
-  background-color: #888;
-  font-family: 'Lucida Grande';
-  font-size: 11px;
-}
+img.favicon {height: 8px; width: 8px;}
+img.centered { vertical-align: middle; }
 
-div.blog { 
-  background-color: #DDD;
-  padding: 10px;
-  width: 775px;
-  margin: 0 auto;
-}
+div.header { margin-bottom: 0px; }
+div.subheader { margin-bottom: 0px; padding-top: 3px; }
 
-div.post { 
-  background-color: #FFF;
-}
+p.indent { margin-left: 8px; }
 
-div.post-header {
-}
+.pager { text-align: center; }
 
-h3.post_title {
-  font-size: 24px;
-  margin: 10px;
-  text-align: left;
-  width: 75%;
-}
+.post-title { display: inline; }
+.title-permalink { float:right; margin-top: 12px; }
 
-div.post_time {
-  float: right;
-}
-
-p.post_body {
-}
+hr.thin { margin-bottom: 9px; margin-top: 9px; }
+div.top-box { height: 90px; margin-bottom: 9px;}

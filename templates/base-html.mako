@@ -3,8 +3,7 @@
 <%
 import uri
 
-def css_link(file, **kwargs):
-  return uri.Static.css_link(file, **kwargs)
+css_link = uri.Static.css_link
 %>
 
 <%def name="includes()">

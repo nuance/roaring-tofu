@@ -1,29 +1,20 @@
 <%inherit file="base-html.mako"/>
 <%namespace name="base" file="base-html.mako"/>
 
-<%def name="title()">My blog</%def>
-
-<%def name="includes()">
-<style type="text/css" media="screen, projection">
-  img.favicon {height: 8px; width: 8px;}
-  img.centered { vertical-align: middle; }
-  div.header { margin-bottom: 0px; }
-  div.subheader { margin-bottom: 0px; padding-top: 3px; }
-  p.indent { margin-left: 8px; }
-  .pager { text-align: center; }
-  .post-title { display: inline; }
-  .title-permalink { float:right; margin-top: 12px; }
-  hr.thin { margin-bottom: 9px; margin-top: 9px; }
-  div.top-box { height: 90px; margin-bottom: 9px;}
-</style>
-</%def>
-
 <%!
-from uri import Blog
+from uri import Blog, Static
 import util
 
 view_post = lambda post_id: Blog.view_post(post_id)
+css_link = Static.css_link
 %>
+
+<%def name="title()">My blog</%def>
+
+<%def name="includes()">
+  ${css_link("blog.css", media="screen, projection") | n}
+</%def>
+
 
 <div class="container">
 
