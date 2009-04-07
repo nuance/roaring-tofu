@@ -5,7 +5,7 @@
 ** TODO Me photo													   :data:
 ** TODO Bottom box - What to do with it?						   :template:
 ** TODO Pictures?													  :batch:
-** TODO Paging											  :servlet::template:
+** DONE Paging											  :servlet::template:
 ** TODO Macro-import script											  :batch:
 ** TODO Lines on top bar										   :template:
 ** DONE Spacing on yelp stars									   :template:

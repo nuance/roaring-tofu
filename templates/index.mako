@@ -81,6 +81,18 @@ view_post = lambda post_id: Blog.view_post(post_id)
     	<p class="post_body">${post.content | n}</p>
       </div>
     % endfor
+
+	<div class="pager">
+	  % if prev:
+	    <a href="/${prev}">prev</a> &nbsp;|&nbsp;
+	  % elif prev == 0:
+	    <a href="/">prev</a> &nbsp;|&nbsp;
+	  % endif>
+	  ${start} - ${end}
+	  % if next:
+	    &nbsp;|&nbsp; <a href="/${next}">next</a>
+	  % endif
+	</div>
   </div>
   
   <!-- Side bar -->

@@ -6,17 +6,30 @@ from util import render_mako
 urls = ('/view/(\d+)', 'view_post')
 app_blog = web.application(urls, globals())
 
-def render_blog(posts=[]):
+def render_blog(posts=[], offset=0, post_count=1, rpp=5):
 	articles = Article.recent_articles()
 	commits = Commit.recent_commits()
 	reviews = Review.recent_reviews()
 	tweet = Tweet.recent_tweet()
 
-	return render_mako('index', posts=posts,
+	prev = None
+	if offset:
+		prev = max(offset - rpp, 0)
+	next = None
+	if offset + rpp < post_count:
+		next = min(post_count - 1, offset + rpp)
+
+	return render_mako('index',
+					   posts=posts,
 					   recent_tweet=tweet,
 					   commits=commits,
 					   reviews=reviews,
-					   articles=articles)
+					   articles=articles,
+					   start=offset,
+					   end=offset + len(posts),
+					   prev=prev,
+					   next=next)
+
 
 class view_post(object):
 	"""
@@ -29,4 +42,4 @@ class view_post(object):
 			# 404
 			return app_blog.notfound()
 
-		return render_blog(posts=post)
+		return render_blog(posts=post, rpp=1)
