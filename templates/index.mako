@@ -5,7 +5,7 @@
 from uri import Blog, Static
 import util
 
-view_post = lambda post_id: Blog.view_post(post_id)
+view_post = Blog.view_post
 css_link = Static.css_link
 %>
 
