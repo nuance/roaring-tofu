@@ -39,6 +39,6 @@ class Review(object):
 
 	@property
 	def snippet(self):
-		return self.review_text[:25] + "..."
+		return self.review_text[:55] + "..."
 
 orm.mapper(Review, t_review)
