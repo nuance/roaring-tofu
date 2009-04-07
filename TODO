@@ -8,6 +8,6 @@
 ** DONE Paging														:servlet:
 ** DONE Paging Styling											   :template:
 ** TODO Macro-import script											  :batch:
-** TODO Permalink style											   :template:
+** DONE Permalink style											   :template:
 ** TODO Lines on top bar										   :template:
 ** DONE Spacing on yelp stars									   :template:

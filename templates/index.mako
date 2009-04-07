@@ -10,7 +10,9 @@
   div.header { margin-bottom: 0px; }
   div.subheader { margin-bottom: 0px; padding-top: 3px; }
   p.indent { margin-left: 8px; }
-  .pager { text-align: right; }
+  .pager { text-align: center; }
+  .post-title { display: inline; }
+  .title-permalink { float:right; margin-top: 12px; }
 </style>
 </%def>
 
@@ -74,8 +76,8 @@ view_post = lambda post_id: Blog.view_post(post_id)
     % for post in posts:
       <div class="post">
         <div class="post-header">
-		  <h2 class="post_title first">${post.title}</h2>
-    	  <span class="small">
+		  <h2 class="post-title">${post.title}</h2>
+    	  <span class="small title-permalink">
     	    <a href="${view_post(post.id)}">permalink</a>
     	  </span>
         </div>
