@@ -4,6 +4,10 @@
 <%def name="includes()">
 <style type="text/css" media="screen, projection">
   img.favicon {height: 8px; width: 8px;}
+  img.centered { vertical-align: middle; }
+  div.header { margin-bottom: 0px; }
+  div.subheader { margin-bottom: 0px; padding-top: 3px; }
+  p.indent { margin-left: 8px; }
 </style>
 </%def>
 
@@ -17,21 +21,21 @@ view_post = lambda post_id: Blog.view_post(post_id)
 <div class="container">
 
   <!-- Header -->
-  <div class="push-1 span-8" style="margin-bottom: 0px;"><h1>The Book of Jones</h1></div>
-  <div class="push-1 span-10 quiet" style="padding-top:3px; margin-bottom:0px;"><h2>Cooking, travel, and techno-babble</h2></div>
-  <hr/>
+  <div class="push-05 span-8 header"><h1>The Book of Jones</h1></div>
+  <div class="push-1 span-10 quiet subheader"><h2>Cooking, travel, and techno-babble</h2></div>
+  <hr class="thin"/>
 
   <!-- Action Boxes -->
 
   <!-- Yelp reviews -->
-  <div class="push-1 span-7 colborder">
+  <div class="push-05 span-7 colborder first">
     <h6>Recent Reviews</h6>
     <p class="incr">
       % for review in reviews:
 	    <a href="${review.url | n}" rel="nofollow">${review.business}</a> -
-        <img src="${review.stars_img | n}" alt="${review.rating}/5 stars"> -
+        <img src="${review.stars_img | n}" alt="${review.rating}/5 stars" class="centered"> -
         ${review.snippet} -
-		${util.relative_time(review.time_authored) }<br/>
+		${util.relative_time(review.time_authored)}<br/>
       % endfor
     </p>
   </div>
@@ -47,9 +51,9 @@ view_post = lambda post_id: Blog.view_post(post_id)
   </div>
 
   <!-- Twitter feed -->
-  <div class="span-6">
+  <div class="span-6 last">
     <h6>Recent Tweet</h6>
-    <p class="incr small" style="padding-left:8px;">
+    <p class="incr small indent">
       <span class="dquo">&#8220;</span>${recent_tweet.text | util.linkify_tweet}&#8221;<br/>
       - ${util.relative_time(recent_tweet.time_created)}&nbsp;&nbsp;
 	  <a href="${recent_tweet.link | n}" rel="nofollow">link</a>
@@ -57,10 +61,9 @@ view_post = lambda post_id: Blog.view_post(post_id)
   </div>
 
   <hr/>
-  <hr class="space"/>
 
   <!-- The blog -->
-  <div class="blog push-1 span-15 colborder">
+  <div class="blog push-05 span-15 colborder">
     % for post in posts:
       <div class="post">
         <div class="post-header">

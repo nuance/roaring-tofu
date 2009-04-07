@@ -199,6 +199,7 @@ div.colborder {padding-right:24px;margin-right:25px;border-right:1px solid #eee;
 .pull-23 {margin-left:-920px;}
 .pull-24 {margin-left:-960px;}
 .pull-1, .pull-2, .pull-3, .pull-4, .pull-5, .pull-6, .pull-7, .pull-8, .pull-9, .pull-10, .pull-11, .pull-12, .pull-13, .pull-14, .pull-15, .pull-16, .pull-17, .pull-18, .pull-19, .pull-20, .pull-21, .pull-22, .pull-23, .pull-24 {float:left;position:relative;}
+.push-05 {margin:0 -20px 1.5em 20px;}
 .push-1 {margin:0 -40px 1.5em 40px;}
 .push-2 {margin:0 -80px 1.5em 80px;}
 .push-3 {margin:0 -120px 1.5em 120px;}
