@@ -37,6 +37,7 @@ class view_post(object):
 	Blog servlet
 	"""
 	def GET(self, id):
+		web.header("Content-Type","text/html; charset=utf-8")
 		post = meta.session.query(Post).filter(Post.id == id).all()
 
 		if not post:
