@@ -3,6 +3,7 @@ import datetime
 import twitter
 
 from batch import Batch
+import config
 from model import Article, meta
 
 class ImportRecentlyRead(Batch):
@@ -11,7 +12,7 @@ class ImportRecentlyRead(Batch):
 		urls = set(a.url for a in current_articles)
 		added = set()
 
-		articles = open("RECENTLY-READ")
+		articles = open(config.recently_read_file)
 		for article_line in articles:
 			if "][" not in article_line: continue
 			url, title = article_line.rstrip()[2:-2].split("][", 1)

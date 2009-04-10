@@ -4,6 +4,7 @@ import urllib2
 from xml.etree import ElementTree
 
 from batch import Batch
+import config
 from model import Review, meta
 
 BIZ_NAME_RE = re.compile("^(?P<biz>.*) \(\d/\d\) on Yelp$")
@@ -28,7 +29,7 @@ def _value_for_key(alist, key):
 
 class ImportReviews(Batch):
 	def arguments(self):
-		self.opt_parser.add_option("-u", "--user-id", dest="user_id", default=None)
+		self.opt_parser.add_option("-u", "--user-id", dest="user_id", default=config.yelp_user)
 
 	def run(self):
 		if not self.options.user_id:

@@ -33,6 +33,8 @@ class Tweet(object):
 		query = meta.session.query(cls).order_by(cls.time_created.desc())
 		if not show_replies:
 			query = query.filter(not_(cls.text.like("@%")))
-		return query.limit(1).all()[0]
+		rows = query.limit(1).all()
+		if not rows: return None
+		return rows[0]
 
 orm.mapper(Tweet, t_tweet)

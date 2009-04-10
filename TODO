@@ -3,11 +3,11 @@
 ** DONE Fix extra spacing on home								   :template:
 ** DONE Default favicon for articles							   :template:
 ** TODO Me photo													   :data:
-** TODO Bottom box - What to do with it?						   :template:
+** DONE Bottom box - What to do with it?						   :template:
 ** TODO Pictures on blog posts? 									  :batch:
 ** DONE Paging														:servlet:
 ** DONE Paging Styling											   :template:
-** TODO Macro-import script											  :batch:
+** DONE Macro-import script											  :batch:
 ** DONE Permalink style											   :template:
 ** DONE Lines on top bar										   :template:
 ** DONE Spacing on yelp stars									   :template:

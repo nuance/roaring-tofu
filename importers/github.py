@@ -3,6 +3,7 @@ import datetime
 import urllib2
 
 from batch import Batch
+import config
 from model import Commit, meta
 
 class GitHub(object):
@@ -23,7 +24,7 @@ class GitHub(object):
 
 class ImportCommits(Batch):
 	def arguments(self):
-		self.opt_parser.add_option("-u", "--user", dest="user", default=None)
+		self.opt_parser.add_option("-u", "--user", dest="user", default=config.github_user)
 		self.opt_parser.add_option("-c", "--count", dest="count", default=100)
 
 	def run(self):

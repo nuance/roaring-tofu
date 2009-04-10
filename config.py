@@ -3,4 +3,5 @@ engine_params = {'echo': True}
 
 twitter_user = "nuance"
 github_user = "nuance"
-github_repos = ["strutil", "smarter-todo", "java-nlp-utils", "python-nlp", "yimacs-config"]
+yelp_user = '5UeW6xMmWClWcOrw6cPXXg'
+recently_read_file = "RECENTLY-READ"
