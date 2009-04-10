@@ -21,11 +21,11 @@ def relative_time(date):
 	diff = date.date() - now.date()
 
 	if diff.days == 0:
-		diff.hours = diff.seconds / 3600
-		diff.minutes = diff.seconds / 60
-		if diff.hours == 0:
-			return "%d minute%s ago" % (abs(diff.minutes), "s" if diff.minutes < -1 else "")
-		return "%d hour%s ago" % (abs(diff.hours), "s" if diff.hours < -1 else "")
+		hours = diff.seconds / 3600
+		minutes = diff.seconds / 60
+		if hours == 0:
+			return "%d minute%s ago" % (abs(minutes), "s" if minutes < -1 else "")
+		return "%d hour%s ago" % (abs(hours), "s" if hours < -1 else "")
 	elif abs(diff.days) < 7:
 		return "%d day%s ago" % (abs(diff.days), "s" if diff.days < -1 else "")
 	elif abs(diff.days) < 28:
