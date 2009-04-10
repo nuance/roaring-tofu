@@ -9,7 +9,8 @@ urls = ('/blog/', app_blog,
 		'/(\d*)', 'index')
 
 app = web.application(urls, globals())
-application = app.wsgifunc()
+web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
+#application = app.wsgifunc()
 read_conn = create_engine(config.engine_url, **config.engine_params)
 init_model(read_conn)
 
