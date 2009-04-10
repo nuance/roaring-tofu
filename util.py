@@ -27,7 +27,7 @@ def relative_time(date):
 	elif abs(diff.days) < 7:
 		return "%d day%s ago" % (abs(diff.days), "s" if diff.days < -1 else "")
 	elif abs(diff.days) < 28:
-		return "%d week%s ago" % (abs(diff.days) / 7, "s" if (diff.days / 7) < -1 else "")
+		return "%d week%s ago" % (abs(diff.days) / 7, "s" if (diff.days / 7) > 1 else "")
 	else:
 		return "on %s" % date.strftime("%B %e")
 

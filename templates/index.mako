@@ -95,8 +95,8 @@ css_link = Static.css_link
     
     <!-- About me -->
     <div id="aboutme" class="box">
-      <h3>About Me</h3><br>
-      <img src="picture-of-me"/><br>
+      <h3>About Me</h3>
+      <img src="/static/images/me.png"/><br/>
       <p>I'm a recent Berkeley grad working at Yelp. In the computer world I'm most excited by machine learning and natural language processing (especially of the bayesian and unsupervised variety), low-level performance tricks, and cool hacks.</p>
       <p>In the real world, I love to cook, travel and I'm getting back into rock climbing.</p>
     </div>
