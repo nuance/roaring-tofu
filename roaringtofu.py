@@ -17,6 +17,7 @@ init_model(read_conn)
 
 class index(object):
 	def GET(self, offset):
+		web.header("Content-Type","text/html; charset=utf-8")
 		count = meta.session.query(Post).count()
 
 		if offset:
