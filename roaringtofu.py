@@ -6,6 +6,8 @@ from blog import app_blog, render_blog
 import config
 from model import Post, init_model, meta
 
+web.config.debug = False
+
 urls = ('/blog/', app_blog,
 		'/(\d*)', 'index')
 
