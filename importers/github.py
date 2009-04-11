@@ -53,6 +53,7 @@ class ImportCommits(Batch):
 				commit = Commit(raw_commit['id'], project, raw_commit['message'],
 								raw_commit['url'], author_time + offset)
 
+				print commit
 				meta.session.add(commit)
 
 		meta.session.commit()

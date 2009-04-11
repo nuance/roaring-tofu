@@ -1,12 +1,9 @@
-import datetime
-import urllib2, urlparse
-
-from sqlalchemy import Table, Column, func, types
+from sqlalchemy import Table, Column, types
 from sqlalchemy import orm
-from sqlalchemy.sql import not_, select
+
+from sqlalchemy import func, sql
 
 import meta
-import uri
 
 t_commit = Table("github_commit", meta.metadata,
 				 Column("id", types.Integer, primary_key=True),
@@ -30,7 +27,15 @@ class Commit(object):
 
 	@classmethod
 	def recent_commits(cls, number=3):
-		query = meta.session.query(cls).group_by(cls.project).order_by(cls.time_authored.desc())
-		return query.limit(number).all()
+		last_commits = meta.session.query(cls.project, func.max(cls.time_authored)).group_by(cls.project).order_by(func.max(cls.time_authored).desc()).limit(number).all()
+
+		commits = []
+		for project, time_authored in last_commits:
+			commits.extend(meta.session.query(cls).filter(sql.and_(cls.time_authored == time_authored, cls.project == project)).limit(1).all())
+
+		return commits
+
+	def __repr__(self):
+		return "Commit(%r, %r, %r, %r, %r)" % (self.cksum, self.project, self.message, self.url, self.time_authored)
 
 orm.mapper(Commit, t_commit)
