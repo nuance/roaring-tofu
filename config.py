@@ -1,4 +1,4 @@
-engine_url = 'sqlite:///blog.sqlite'
+engine_url = 'sqlite:////srv/www/domains/roaringtofu.org/blog.sqlite'
 engine_params = {'echo': False}
 
 twitter_user = "nuance"
