@@ -18,7 +18,7 @@ def batch(fun):
 
 def relative_time(date): 
 	now = datetime.datetime.now()
-	diff = date.date() - now.date()
+	diff = now.date() - date.date()
 
 	if diff.days == 0:
 		hours = diff.seconds / 3600
