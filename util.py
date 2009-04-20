@@ -24,7 +24,7 @@ def relative_time(date):
 		hours = diff.seconds / 3600
 		minutes = diff.seconds / 60
 		if hours == 0:
-			return "%d minute%s ago (%d seconds)" % (abs(minutes), "s" if minutes != 1 else "", diff.seconds)
+			return "%d minute%s ago" % (abs(minutes), "s" if minutes != 1 else "")
 		return "%d hour%s ago" % (abs(hours), "s" if hours != 1 else "")
 	elif abs(diff.days) < 7:
 		return "%d day%s ago" % (abs(diff.days), "s" if diff.days != 1 else "")
