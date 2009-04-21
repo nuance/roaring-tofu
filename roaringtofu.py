@@ -3,17 +3,19 @@ from sqlalchemy import create_engine
 import web
 
 from blog import app_blog, render_blog
+from read import app_read
 import config
 from model import Post, init_model, meta
 
 web.config.debug = False
 
-urls = ('/blog/', app_blog,
+urls = ('/blog', app_blog,
+		'/read', app_read,
 		'/(\d*)', 'index')
 
 app = web.application(urls, globals())
-web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
-#application = app.wsgifunc()
+#web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
+application = app.wsgifunc()
 read_conn = create_engine(config.engine_url, **config.engine_params)
 init_model(read_conn)
 
