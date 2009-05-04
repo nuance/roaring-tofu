@@ -25,7 +25,8 @@ class ImportRecentlyRead(Batch):
 			meta.session.add(article)
 
 		meta.session.commit()
-		print "Imported %d new articles" % len(added)
+		if added:
+			print "Imported %d new articles" % len(added)
 
 if __name__ == "__main__":
 	batch = ImportRecentlyRead()
