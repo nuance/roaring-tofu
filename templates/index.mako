@@ -96,7 +96,7 @@ css_link = Static.css_link
 			blog comments powered by <span class="logo-disqus">Disqus</span>
 		  </a>
 		% else:
-		  <a href="http://my.website/article-permalink#disqus_thread">View Comments</a>
+		  <a href="${view_post(post.id}}#disqus_thread">View Comments</a>
 		% endif
       </div>
     % endfor
