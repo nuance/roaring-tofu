@@ -23,7 +23,7 @@ css_link = uri.Static.css_link
   % elif prev == 0:
 	<a href="${base_url}">prev</a> &nbsp;|&nbsp;
   % endif>
-  ${start} - ${end} of ${total}
+  ${start + 1} - ${end} of ${total}
   % if next:
     &nbsp;|&nbsp; <a href="${url % next}">next</a>
   % endif

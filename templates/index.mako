@@ -13,6 +13,7 @@ css_link = Static.css_link
 
 <%def name="includes()">
   ${css_link("blog.css", media="screen, projection") | n}
+<script>var disqus_developer = true</script>
 </%def>
 
 
@@ -62,9 +63,11 @@ css_link = Static.css_link
 
   <!-- The blog -->
   <div class="blog push-05 span-15 colborder">
-	<div class="pager">
-	  ${base.pager("/", "/%d", start, end, prev, next, total)}
-	</div>
+	% if len(posts) > 1:
+	  <div class="pager">
+		${base.pager("/", "/%d", start, end, prev, next, total)}
+	  </div>
+	% endif
 
     % for post in posts:
       <div class="post">
@@ -101,9 +104,11 @@ css_link = Static.css_link
       </div>
     % endfor
 
-	<div class="pager">
-	  ${base.pager("/", "/%d", start, end, prev, next, total)}
-	</div>
+	% if len(posts) > 1:
+	  <div class="pager">
+		${base.pager("/", "/%d", start, end, prev, next, total)}
+	  </div>
+	% endif
 
   </div>
   
