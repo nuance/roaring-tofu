@@ -6,12 +6,14 @@ from blog import app_blog, render_blog
 from read import app_read
 import config
 from model import Post, init_model, meta
+from yelp_redir import yelp_redir
 
 web.config.debug = False
 
 urls = ('/blog', app_blog,
 		'/read', app_read,
-		'/(\d*)', 'index')
+		'/(\d*)', 'index',
+		'/yelp/.*', yelp_redir)
 
 app = web.application(urls, globals())
 web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
