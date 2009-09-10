@@ -13,7 +13,7 @@ web.config.debug = False
 urls = ('/blog', app_blog,
 		'/read', app_read,
 		'/(\d*)', 'index',
-		'/yelp/.*', yelp_redir)
+		'/yelp/(.*)', yelp_redir)
 
 app = web.application(urls, globals())
 web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
