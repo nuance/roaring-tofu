@@ -4,6 +4,10 @@ import web
 class yelp_redir(object):
 	def GET(self, query):
 		decoded_query = unquote(query)
-		search, location = decoded_query.split('@', 1)
+		if '@' in decoded_query:
+			desc, loc = decoded_query.split('@', 1)
+			search = 'find_desc=%s&find_loc=%s' % (quote(search.strip()), quote(location.strip()))
+		else:
+			search = 'find_desc=%s' % quote(decoded_query.strip())
 
-		raise web.seeother('yelp.com/search?find_desc=%s&find_loc=%s' % (quote(search), quote(location)))
+		raise web.seeother('http://www.yelp.com/search?%s' % search)
