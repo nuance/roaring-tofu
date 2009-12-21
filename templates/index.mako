@@ -7,12 +7,16 @@ import util
 
 view_post = Blog.view_post
 css_link = Static.css_link
+js_link = Static.js_link
 %>
 
 <%def name="title()">My blog</%def>
 
 <%def name="includes()">
+  ${css_link("blueprint/tabs.css", media="screen, projection") | n}
   ${css_link("blog.css", media="screen, projection") | n}
+
+  ${js_link("blog.js") | n}
 <script>var disqus_developer = true</script>
 </%def>
 
@@ -57,6 +61,16 @@ css_link = Static.css_link
       - ${util.relative_time(recent_tweet.time_created)}&nbsp;&nbsp;
 	  <a href="${recent_tweet.link | n}" rel="nofollow">link</a>
     </p>
+  </div>
+
+  <hr style="margin-bottom:0;"/>
+
+  <!-- Tab bar -->
+  <div class="tabbar span-20 header">
+	<ul class="tabs">
+	  <li class="active"><a href="#">Blog</a></li>
+	  <li><a href="#">Projects</a></li>
+	</ul>
   </div>
 
   <hr/>

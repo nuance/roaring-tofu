@@ -4,7 +4,10 @@
 import uri
 from config import ga_key
 
+ext_js = uri.URIBase.script
+
 css_link = uri.Static.css_link
+js_link = uri.Static.js_link
 %>
 
 <%def name="includes()">
@@ -14,6 +17,9 @@ css_link = uri.Static.css_link
     ${css_link("blueprint/ie.css", media="screen, projection")}
   <![endif]-->
   ${css_link("blueprint/fancy-type.css", media="screen, projection") | n}
+
+  ${ext_js("http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js") | n}
+
   ${next.includes()}
 </%def>
 
