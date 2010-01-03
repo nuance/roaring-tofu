@@ -1,23 +1,19 @@
-import web
+from tornado import web
 
 from model import Article, meta
 from private import post_key
 from util import render_mako
+import app_urls
 
-urls = ('/save', 'save_post',
-		'/add/(.+)', 'add_post',
-		'/bookmarklet/(.+)', 'bookmarklet')
-app_read = web.application(urls, globals())
-
-class save_post(object):
+class save_post(web.RequestHandler):
 	"""
 	Blog servlet
 	"""
-	def POST(self):
-		input = web.input()
+	def post(self):
+		key = self.get_argument('key')
 
-		if input.key != post_key:
-			return app_read.notfound()
+		if key != post_key:
+			raise web.HTTPError(404)
 
 		title = input.title
 		url = input.url
@@ -26,29 +22,35 @@ class save_post(object):
 		meta.session.add(article)
 		meta.session.commit()
 
-		web.redirect(url)
+		self.redirect(url)
 
 
-class add_post(object):
+class add_post(web.RequestHandler):
 	"""
 	Blog servlet
 	"""
-	def GET(self, key):
+	def get(self, key):
 		if key != post_key:
-			return app_read.notfound()
+			raise web.HTTPError(404)
 
 		return render_mako('article_submission', key=key)
 
-class bookmarklet(object):
+
+class bookmarklet(web.RequestHandler):
 	"""
 	Blog servlet
 	"""
-	def GET(self, key):
+	def get(self, key):
 		if key == 'css':
-			web.header("Content-Type","text/css; charset=utf-8")
+			self.set_header("Content-Type","text/css; charset=utf-8")
 			return render_mako('bookmarklet_css')
 		if key != post_key:
-			return app_read.notfound()
+			raise web.HTTPError(404)
 
-		web.header("Content-Type","application/javascript; charset=utf-8")
+		self.set_header("Content-Type","application/javascript; charset=utf-8")
 		return render_mako('bookmarklet', key=key)
+
+urls = [('/read/save', save_post),
+		('/read/add/(.+)', add_post),
+		('/read/bookmarklet/(.+)', bookmarklet)]
+app_urls.urls.extend(urls)

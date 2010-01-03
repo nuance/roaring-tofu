@@ -1,8 +1,9 @@
 from urllib import quote, unquote
-import web
+from tornado import web
+import app_urls
 
-class yelp_redir(object):
-	def GET(self, query):
+class yelp_redir(web.RequestHandler):
+	def get(self, query):
 		decoded_query = unquote(query)
 		if '@' in decoded_query:
 			desc, loc = decoded_query.split('@', 1)
@@ -10,4 +11,8 @@ class yelp_redir(object):
 		else:
 			search = 'find_desc=%s' % quote(decoded_query.strip())
 
-		raise web.seeother('http://www.yelp.com/search?%s' % search)
+		self.redirect('http://www.yelp.com/search?%s' % search)
+
+
+urls = [('/yelp/(.*)', yelp_redir)]
+app_urls.urls.extend(urls)

@@ -1,13 +1,13 @@
 import datetime
 import re
+from mako.template import Template
+from mako.lookup import TemplateLookup
 
-from web.contrib.template import render_mako
+template_lookup = TemplateLookup(directories=['templates'], module_directory='/tmp/mako_modules')
 
-render = render_mako(directories=['templates'], input_encoding='utf-8', output_encoding='utf-8', default_filters=['unicode', 'h'])
-
-def render_mako(tmpl, *args, **kwargs):
-	template = render._lookup.get_template(tmpl + ".mako")
-	return template.render(*args, **kwargs)
+def render_mako(templatename, **kwargs):
+    template = template_lookup.get_template(templatename)
+    return template.render(**kwargs)
 
 def batch(fun):
 	"""
