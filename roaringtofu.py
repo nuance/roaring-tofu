@@ -16,7 +16,7 @@ urls = ('/blog', app_blog,
 		'/yelp/(.*)', yelp_redir)
 
 app = web.application(urls, globals())
-web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
+#web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
 #application = app.wsgifunc()
 read_conn = create_engine(config.engine_url, **config.engine_params)
 init_model(read_conn)

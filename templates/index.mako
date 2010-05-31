@@ -68,8 +68,8 @@ js_link = Static.js_link
   <!-- Tab bar -->
   <div class="tabbar span-20 header">
 	<ul class="tabs">
-	  <li class="active"><a href="#">Blog</a></li>
-	  <li><a href="#">Projects</a></li>
+	  <li class="active"><a href="/">Blog</a></li>
+	  <li><a href="projects">Projects</a></li>
 	</ul>
   </div>
 
