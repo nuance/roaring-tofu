@@ -35,7 +35,7 @@ class Review(object):
 
 	@property
 	def stars_img(self):
-		return "http://static.px.yelp.com/iv/20090401/new/ico/stars/stars_mobile_%d.gif" % self.rating
+		return "http://media1.px.yelpcdn.com/static/200911302843250757/i/ico/stars/stars_mobile_%d.gif" % self.rating
 
 	@property
 	def snippet(self):

@@ -1,10 +1,13 @@
 import cjson
 import datetime
+import logging
 import urllib2
 
 from batch import Batch
 import config
 from model import Commit, meta
+
+log = logging.getLogger('import.github')
 
 class GitHub(object):
 	@classmethod
@@ -17,7 +20,11 @@ class GitHub(object):
 
 	@classmethod
 	def load_commits(cls, user_name, project):
-		commits = cjson.decode(urllib2.urlopen("http://github.com/api/v1/json/%s/%s/commits/master" % (user_name, project)).read())['commits']
+		try:
+			commits = cjson.decode(urllib2.urlopen("http://github.com/api/v2/json/commits/list/%s/%s/master" % (user_name, project)).read())['commits']
+		except Exception, e:
+			log.exception('Exception loading commits for %s @ %s' % (user_name, project))
+			return []
 
 		return commits
 

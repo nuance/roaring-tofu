@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
 from sqlalchemy import create_engine
 from tornado import web, ioloop, httpserver
 
@@ -29,7 +33,7 @@ class index(web.RequestHandler):
 urls = [('/(\d*)', index)]
 		
 app_urls.urls.extend(urls)
-app = web.Application(app_urls.urls)
+app = web.Application(app_urls.urls, **config.http_params)
 
 read_conn = create_engine(config.engine_url, **config.engine_params)
 init_model(read_conn)
