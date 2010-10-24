@@ -49,3 +49,8 @@ def linkify_tweet(text):
 	text = re.sub(tag_re, _link("<a rel=\"nofollow\" href=\"http://search.twitter.com/search?q=%(1)s\">#%(1)s</a>"), text)
 
 	return text
+
+base_37_re = re.compile('[^0123456789abcdefghijklmnopqrstuvwxyz]')
+def to_base37(text, repl='-'):
+	ltext = text.lower()
+	return base_37_re.sub(repl, ltext)

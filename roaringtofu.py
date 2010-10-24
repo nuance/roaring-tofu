@@ -6,15 +6,17 @@ logging.basicConfig(level=logging.DEBUG)
 from sqlalchemy import create_engine
 from tornado import web, ioloop, httpserver
 
+from base import BaseHandler
 import blog, read
 import config
 from model import Post, init_model, meta
 from yelp_redir import yelp_redir
 import app_urls
 
-class index(web.RequestHandler):
+log = logging.getLogger('roaringtofu')
+
+class index(BaseHandler):
 	def get(self, offset):
-		self.set_header("Content-Type","text/html; charset=utf-8")
 		count = meta.session.query(Post).count()
 
 		if offset:
@@ -26,13 +28,12 @@ class index(web.RequestHandler):
 			# temp redirect to home
 			pass
 
-		posts = meta.session.query(Post).order_by(Post.time_created.desc()).limit(5).offset(offset).all()
-
-		self.write(blog.render_blog(posts=posts, offset=offset, post_count=count, rpp=5))
+		self.render_blog(post_count=count, offset=offset, rpp=5)
 
 urls = [('/(\d*)', index)]
-		
 app_urls.urls.extend(urls)
+
+log.info(app_urls.urls)
 app = web.Application(app_urls.urls, **config.http_params)
 
 read_conn = create_engine(config.engine_url, **config.engine_params)

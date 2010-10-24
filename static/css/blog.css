@@ -13,3 +13,5 @@ p.indent { margin-left: 8px; }
 
 hr.thin { margin-bottom: 9px; margin-top: 9px; }
 div.top-box { height: 120px; margin-bottom: 9px;}
+
+h1 a { text-decoration: none; color: black;}

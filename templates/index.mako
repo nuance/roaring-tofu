@@ -20,7 +20,7 @@ css_link = Static.css_link
 <div class="container">
 
   <!-- Header -->
-  <div class="push-05 span-8 header"><h1>The Book of Jones</h1></div>
+  <div class="push-05 span-8 header"><h1><a href="/">The Book of Jones</a></h1></div>
   <div class="push-1 span-10 quiet subheader"><h2>Cooking, travel, and techno-babble</h2></div>
   <hr class="thin"/>
 
@@ -74,7 +74,7 @@ css_link = Static.css_link
         <div class="post-header">
 		  <h2 class="post-title">${post.title}</h2>
     	  <span class="small title-permalink">
-    	    <a href="${view_post(post.id)}">permalink</a>
+    	    <a href="${view_post(post.alias)}">permalink</a>
     	  </span>
         </div>
     	<div class="post_time">
