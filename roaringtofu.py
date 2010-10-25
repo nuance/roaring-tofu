@@ -16,6 +16,8 @@ import app_urls
 log = logging.getLogger('roaringtofu')
 
 class index(BaseHandler):
+	_path = '/(\d*)'
+
 	def get(self, offset):
 		count = meta.session.query(Post).count()
 
@@ -29,9 +31,6 @@ class index(BaseHandler):
 			pass
 
 		self.render_blog(post_count=count, offset=offset, rpp=5)
-
-urls = [('/(\d*)', index)]
-app_urls.urls.extend(urls)
 
 log.info(app_urls.urls)
 app = web.Application(app_urls.urls, **config.http_params)

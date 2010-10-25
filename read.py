@@ -1,14 +1,16 @@
 from tornado import web
 
+from base import BaseHandler
 from model import Article, meta
 from private import post_key
 from util import render_mako
-import app_urls
 
-class save_post(web.RequestHandler):
+class save_post(BaseHandler):
 	"""
 	Blog servlet
 	"""
+	_path = '/read/save'
+
 	def post(self):
 		key = self.get_argument('key')
 
@@ -25,10 +27,12 @@ class save_post(web.RequestHandler):
 		self.redirect(url)
 
 
-class add_post(web.RequestHandler):
+class add_post(BaseHandler):
 	"""
 	Blog servlet
 	"""
+	_path = '/read/add/(.+)'
+
 	def get(self, key):
 		if key != post_key:
 			raise web.HTTPError(404)
@@ -36,10 +40,12 @@ class add_post(web.RequestHandler):
 		return render_mako('article_submission', key=key)
 
 
-class bookmarklet(web.RequestHandler):
+class bookmarklet(BaseHandler):
 	"""
 	Blog servlet
 	"""
+	_path = '/read/bookmarklet/(.+)'
+
 	def get(self, key):
 		if key == 'css':
 			self.set_header("Content-Type","text/css; charset=utf-8")
@@ -50,7 +56,3 @@ class bookmarklet(web.RequestHandler):
 		self.set_header("Content-Type","application/javascript; charset=utf-8")
 		return render_mako('bookmarklet', key=key)
 
-urls = [('/read/save', save_post),
-		('/read/add/(.+)', add_post),
-		('/read/bookmarklet/(.+)', bookmarklet)]
-app_urls.urls.extend(urls)

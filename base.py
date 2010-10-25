@@ -2,8 +2,26 @@ from tornado import web
 
 from model import Article, Commit, Post, Review, Tweet, meta
 from util import render_mako
+import app_urls
+
+class RegisterableClass(type):
+	def __new__(meta, classname, bases, class_dict):
+		constructed = type.__new__(meta, classname, bases, class_dict)
+
+		if constructed._path is not None:
+			constructed.register()
+
+		return constructed
+
 
 class BaseHandler(web.RequestHandler):
+	__metaclass__ = RegisterableClass
+	_path = None
+
+	@classmethod
+	def register(cls):
+		return app_urls.connect(cls._path, cls)
+
 	def render_blog(self, posts=None, offset=0, post_count=1, rpp=5):
 		if posts is None:
 			posts = meta.session.query(Post).order_by(Post.time_created.desc()).limit(rpp).offset(offset).all()

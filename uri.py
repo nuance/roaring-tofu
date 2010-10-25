@@ -19,7 +19,7 @@ class Static(URIBase):
 class Blog(URIBase):
 	@classmethod
 	def view_post(cls, post_alias):
-		return "/view/%s" % post_alias
+		return "/post/%s" % post_alias
 
 class Twitter(URIBase):
 	@classmethod
