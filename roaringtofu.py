@@ -41,4 +41,6 @@ init_model(read_conn)
 if __name__ == "__main__":
 	http_server = httpserver.HTTPServer(app)
 	http_server.listen(8888)
+	
+	log.info("Serving blog on http://127.0.0.1:8888")
 	ioloop.IOLoop.instance().start()

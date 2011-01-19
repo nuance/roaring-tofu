@@ -9,8 +9,8 @@ import uri
 
 t_article = Table("article", meta.metadata,
 				  Column("id", types.Integer, primary_key=True),
-				  Column("title", types.String, nullable=False),
-				  Column("url", types.String, nullable=False),
+				  Column("title", types.Unicode, nullable=False),
+				  Column("url", types.Unicode, nullable=False),
 				  Column('time_added', types.DateTime, nullable=False))
 
 class Article(object):

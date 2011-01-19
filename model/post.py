@@ -14,27 +14,25 @@ from util import to_base37
 
 t_old_post = Table("post", meta.metadata,
                    Column("id", types.Integer, primary_key=True),
-                   Column("title", types.String, nullable=False),
-                   Column("name", types.String, nullable=False),
-                   Column("content", types.String, nullable=False),
-                   Column("file_name", types.String, nullable=False),
+                   Column("title", types.Unicode, nullable=False),
+                   Column("name", types.Unicode, nullable=False),
+                   Column("content", types.Unicode, nullable=False),
+                   Column("file_name", types.Unicode, nullable=False),
                    Column('time_created', types.DateTime, default=func.current_timestamp(), nullable=False),
                    Column('time_modified', types.DateTime, default=None, nullable=True))
 
 t_post = Table("md_post", meta.metadata,
 			   Column("id", types.Integer, primary_key=True),
-			   Column("title", types.String, nullable=False),
-			   Column("alias", types.String, nullable=False),
-			   Column("file_name", types.String, nullable=False),
+			   Column("title", types.Unicode, nullable=False),
+			   Column("alias", types.Unicode, nullable=False),
+			   Column("file_name", types.Unicode, nullable=False),
 			   Column('time_created', types.DateTime, default=func.current_timestamp(), nullable=False),
 			   Column('time_modified', types.DateTime, default=None, nullable=True))
 
 class Post(object):
 	def __init__(self, file_name):
-		md = markdown.Markdown(extensions=['meta', 'fenced_code'])
+		md = markdown.Markdown(extensions=['meta', 'codehilite'])
 		md.convert(open(file_name).read())
-
-		print md.Meta
 
 		self.file_name = os.path.join(config.posts_path, file_name)
 		self.title = md.Meta['title'][0]
@@ -64,7 +62,7 @@ class Post(object):
 		with open(self.file_name) as f:
 			raw_content = f.read()
 
-		return markdown.markdown(raw_content, extensions=['meta', 'fenced_code'])
+		return markdown.markdown(raw_content, extensions=['meta', 'codehilite'])
 
 	@classmethod
 	def by_alias(cls, alias):

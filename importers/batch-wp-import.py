@@ -40,7 +40,7 @@ class ImportPosts(Batch):
 
       file_name = "%s-%s" % (time_created.strftime("%Y-%m-%d"), name)
       content_filename = "blog-posts/%s" % file_name
-      print title, name, content_filename
+      self.log.info((title, name, content_filename))
 
       with open(content_filename, "w") as blog_content_file:
         blog_content_file.write(content)

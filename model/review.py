@@ -6,12 +6,12 @@ import meta
 
 t_review = Table("yelp_review", meta.metadata,
 				 Column("id", types.Integer, primary_key=True),
-				 Column("business", types.String, nullable=False),
+				 Column("business", types.Unicode, nullable=False),
 				 Column("rating", types.Integer, nullable=False),
-				 Column("review_text", types.String, nullable=False),
+				 Column("review_text", types.Unicode, nullable=False),
 				 Column("long", types.Float, nullable=False),
 				 Column("lat", types.Float, nullable=False),
-				 Column("url", types.String, nullable=False),
+				 Column("url", types.Unicode, nullable=False),
 				 Column('time_authored', types.DateTime, nullable=False))
 
 class Review(object):

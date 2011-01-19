@@ -3,7 +3,7 @@ import re
 from mako.template import Template
 from mako.lookup import TemplateLookup
 
-template_lookup = TemplateLookup(directories=['templates'], module_directory='/tmp/mako_modules')
+template_lookup = TemplateLookup(directories=['templates'], module_directory='/tmp/mako_modules', output_encoding='utf-8')
 
 def render_mako(templatename, **kwargs):
     template = template_lookup.get_template(templatename)

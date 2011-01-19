@@ -1,6 +1,9 @@
+import logging
+
 # Namespace for app urls
 urls = []
+log = logging.getLogger('app_urls')
 
 def connect(path, handler):
-	print '%s => %s' % (path, handler.__name__)
+	log.info('Connecting %s => %s' % (path, handler.__name__))
 	urls.append((path, handler))

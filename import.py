@@ -7,7 +7,7 @@ log = logging.getLogger('import')
 
 if __name__ == "__main__":
 	for batch in (ImportReviews, ImportRecentlyRead, ImportCommits, ImportTweets):
-		log.info("Running impot for %s" % batch.__name__)
+		log.info("Running import for %s" % batch.__name__)
 		try:
 			b = batch()
 			b.start()

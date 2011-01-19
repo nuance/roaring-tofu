@@ -7,10 +7,10 @@ import meta
 
 t_commit = Table("github_commit", meta.metadata,
 				 Column("id", types.Integer, primary_key=True),
-				 Column("cksum", types.String, nullable=False),
-				 Column("project", types.String, nullable=False),
-				 Column("message", types.String, nullable=False),
-				 Column("url", types.String, nullable=False),
+				 Column("cksum", types.Unicode, nullable=False),
+				 Column("project", types.Unicode, nullable=False),
+				 Column("message", types.Unicode, nullable=False),
+				 Column("url", types.Unicode, nullable=False),
 				 Column('time_authored', types.DateTime, nullable=False))
 
 class Commit(object):

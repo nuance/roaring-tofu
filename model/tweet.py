@@ -10,8 +10,8 @@ import uri
 t_tweet = Table("tweet", meta.metadata,
 				Column("id", types.Integer, primary_key=True),
 				Column("status_id", types.Integer, nullable=False),
-				Column("user", types.String, nullable=False),
-				Column("text", types.String, nullable=False),
+				Column("user", types.Unicode, nullable=False),
+				Column("text", types.Unicode, nullable=False),
 				Column('time_created', types.DateTime, nullable=False))
 
 class Tweet(object):

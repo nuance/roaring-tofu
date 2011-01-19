@@ -6,7 +6,7 @@ engine_params = getattr(private, 'engine_params', {'echo': False})
 twitter_user = "nuance"
 github_user = "nuance"
 yelp_user = '5UeW6xMmWClWcOrw6cPXXg'
-recently_read_file = "/srv/www/domains/roaringtofu.org/RECENTLY-READ"
+pinboard_json_feed = 'http://feeds.pinboard.in/json/v1/u:nuance/'
 
 ga_key = "2393143-1"
 

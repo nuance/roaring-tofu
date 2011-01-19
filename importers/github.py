@@ -64,7 +64,7 @@ class ImportCommits(Batch):
 
 		meta.session.commit()
 		if added:
-			print "Imported %d new commits" % len(added)
+			self.log.info("Imported %d new commits" % len(added))
 
 if __name__ == "__main__":
 	batch = ImportCommits()

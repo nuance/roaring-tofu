@@ -61,7 +61,7 @@ class ImportReviews(Batch):
 
 		meta.session.commit()
 		if added:
-			print "Imported %d new reviews" % len(added)
+			self.log.info("Imported %d new reviews" % len(added))
 
 if __name__ == "__main__":
 	batch = ImportReviews()
