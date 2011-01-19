@@ -9,7 +9,6 @@ from model import Article, meta
 class ImportRecentlyRead(Batch):
 	def run(self):
 		current_articles = meta.session.query(Article).all()
-		print [unicode(a.title) for a in current_articles]
 		urls = set(a.url for a in current_articles)
 		added = set()
 

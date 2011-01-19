@@ -2,7 +2,7 @@
 <%namespace name="base" file="base-html.mako"/>
 
 <%!
-from uri import Blog, Static
+from util.uri import Blog, Static
 import util
 
 view_post = Blog.view_post

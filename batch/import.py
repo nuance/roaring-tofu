@@ -1,6 +1,6 @@
 import logging
 
-from importers import ImportReviews, ImportRecentlyRead, ImportCommits, ImportTweets
+from batch.importers import ImportReviews, ImportRecentlyRead, ImportCommits, ImportTweets
 
 logging.basicConfig()
 log = logging.getLogger('import')

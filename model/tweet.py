@@ -5,7 +5,7 @@ from sqlalchemy import orm
 from sqlalchemy.sql import not_, select
 
 import meta
-import uri
+import util.uri
 
 t_tweet = Table("tweet", meta.metadata,
 				Column("id", types.Integer, primary_key=True),
@@ -26,7 +26,7 @@ class Tweet(object):
 
 	@property
 	def link(self):
-		return uri.Twitter.tweet_url(self.user, self.status_id)
+		return util.uri.Twitter.tweet_url(self.user, self.status_id)
 
 	@classmethod
 	def recent_tweet(cls, show_replies=False):

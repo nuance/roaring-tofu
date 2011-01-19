@@ -5,7 +5,7 @@ from sqlalchemy import Table, Column, types
 from sqlalchemy import orm
 
 import meta
-import uri
+import util.uri
 
 t_article = Table("article", meta.metadata,
 				  Column("id", types.Integer, primary_key=True),
@@ -26,7 +26,7 @@ class Article(object):
 
 	@property
 	def link(self):
-		return uri.a(self.url, self.title)
+		return util.uri.a(self.url, self.title)
 
 	@property
 	def domain(self):

@@ -1,10 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
 <%
-import uri
+import util.uri
 from config import ga_key
 
-css_link = uri.Static.css_link
+css_link = util.uri.Static.css_link
 %>
 
 <%def name="includes()">

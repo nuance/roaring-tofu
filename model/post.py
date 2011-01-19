@@ -4,7 +4,7 @@ import stat
 
 import json
 import markdown
-import rst
+import util.rst
 from sqlalchemy import Table, Column, func, types
 from sqlalchemy import orm
 
@@ -109,7 +109,7 @@ class OldPost(object):
 	def body_html(self):
 		try:
 			content = open("blog-posts/%s" % self.file_name).read()
-			return rst.html_body(unicode(content))
+			return util.rst.html_body(unicode(content))
 		except IOError:
 			return ''
 
