@@ -1,7 +1,7 @@
 from tornado import web
 
 from model import meta, Post
-from base import BaseHandler
+from handlers.base import BaseHandler
 
 class view_post(BaseHandler):
 	"""

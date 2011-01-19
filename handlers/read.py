@@ -1,6 +1,6 @@
 from tornado import web
 
-from base import BaseHandler
+from handlers.base import BaseHandler
 from model import Article, meta
 from private import post_key
 from util import render_mako

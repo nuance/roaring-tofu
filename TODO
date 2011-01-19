@@ -11,3 +11,6 @@
 ** DONE Permalink style											   :template:
 ** DONE Lines on top bar										   :template:
 ** DONE Spacing on yelp stars									   :template:
+* Tornado port
+** TODO Port templates to tornado
+** TODO Move blueprint into css
