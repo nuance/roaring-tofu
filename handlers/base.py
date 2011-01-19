@@ -1,3 +1,5 @@
+import logging
+
 from tornado import web
 
 from model import Article, Commit, Post, Review, Tweet, meta
@@ -17,6 +19,9 @@ class RegisterableClass(type):
 class BaseHandler(web.RequestHandler):
 	__metaclass__ = RegisterableClass
 	_path = None
+
+	def initialize(self):
+		self.log = logging.getLogger('handlers.%s' % (self.__class__.__name__))
 
 	@classmethod
 	def register(cls):
