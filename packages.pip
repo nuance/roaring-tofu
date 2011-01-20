@@ -1,0 +1,5 @@
+Markdown==2.0.3
+SQLAlchemy==0.6.6
+docutils==0.7
+tornado==1.1
+wsgiref==0.1.2
