@@ -2,6 +2,7 @@ import logging
 
 # Namespace for app urls
 urls = []
+logging.basicConfig(level=logging.INFO)
 log = logging.getLogger('app_urls')
 
 def connect(path, handler):
