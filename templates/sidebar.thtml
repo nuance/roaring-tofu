@@ -18,7 +18,7 @@
     <p class="incr">
       {% for article in info['articles'] %}
         <span class="span-1"><img src="{{ article.favicon }}" alt="{{ escape(article.domain) }}" class="favicon"/></span>
-        {{ escape(article.title) }} - <a href="{{ article.url }}" rel="nofollow">({{ escape(article.domain) }})</a> - {{ escape(util.relative_time(article.time_added)) }}<br/>
+        {{ escape(article.title) }} - <a href="{{ article.url }}">({{ escape(article.domain) }})</a> - {{ escape(util.relative_time(article.time_added)) }}<br/>
 	    {% end %}
     </p>
 </div>

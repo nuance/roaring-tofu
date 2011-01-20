@@ -8,4 +8,4 @@ class BlueprintCSS(tornado.web.UIModule):
 		return """<!--[if IE] <link href=\"""" + self.handler.static_url("css/blueprint/ie.css") + """\"<![endif]-->"""
 
 	def css_files(self):
-		return ["css/blueprint/screen.css", "css/blueprint/fancy-type.css"]
+		return ["css/blueprint/screen.css"]

@@ -1,43 +1,45 @@
 {% import util %}
 
 <!-- Header -->
-<div class="push-05 span-8 header"><h1><a href="/">The Book of Jones</a></h1></div>
-<div class="push-1 span-10 quiet subheader"><h2>Cooking, travel, and techno-babble</h2></div>
-<hr class="thin"/>
+<div id="titleBox">
+	<h1><a href="/">The Book of Jones</a></h1>
+	<h2>Cooking, travel, and techno-babble</h2>
+</div>
 
 <!-- Action Boxes -->
+<div id="actionBoxes">
+  <!-- Yelp reviews -->
+  <div>
+    <h2>Recent Reviews</h2>
+    <p>
+      {% for review in info['reviews'] %}
+        <a href="{{ review.url }}" rel="nofollow"> {{ escape(review.business)}}</a> -
+          <img src="{{ review.stars_img }}" alt="{{ review.rating }}/5 stars" class="centered"> -
+          {{ escape(review.snippet) }} -
+  	      {{ escape(util.relative_time(review.time_authored)) }}<br/>
+      {% end %}
+    </p>
+  </div>
 
-<!-- Yelp reviews -->
-<div class="push-05 span-7 colborder first top-box">
-  <h6>Recent Reviews</h6>
-  <p class="incr">
-    {% for review in info['reviews'] %}
-      <a href="{{ review.url }}" rel="nofollow"> {{ escape(review.business)}}</a> -
-        <img src="{{ review.stars_img }}" alt="{{ review.rating }}/5 stars" class="centered"> -
-        {{ escape(review.snippet) }} -
-	      {{ escape(util.relative_time(review.time_authored)) }}<br/>
-    {% end %}
-  </p>
-</div>
+  <!-- Github commits -->
+  <div>
+    <h2>Recent Commits</h2>
+    <p>
+      {% for commit in info['commits'] %}
+        <a href="{{ commit.url }}" rel="nofollow">{{ escape(commit.project) }}</a> - {{ escape(commit.message) }} - {{ util.relative_time(commit.time_authored) }}<br/>
+      {% end %}
+    </p>
+  </div>
 
-<!-- Github commits -->
-<div class="span-7 colborder top-box">
-  <h6>Recent Commits</h6>
-  <p class="incr">
-    {% for commit in info['commits'] %}
-      <a href="{{ commit.url }}" rel="nofollow">{{ escape(commit.project) }}</a> - {{ escape(commit.message) }} - {{ util.relative_time(commit.time_authored) }}<br/>
-    {% end %}
-  </p>
-</div>
-
-<!-- Twitter feed -->
-<div class="span-6 last top-box">
-  <h6>Recent Tweet</h6>
-  <p class="incr small indent">
-    <span class="dquo">&#8220;</span>{{ util.linkify_tweet(escape(info['tweet'].text)) }}&#8221;<br/>
-    - {{ escape(util.relative_time(info['tweet'].time_created)) }}&nbsp;&nbsp;
-  <a href="{{ info['tweet'].link }}" rel="nofollow">link</a>
-  </p>
+  <!-- Twitter feed -->
+  <div>
+    <h2>Recent Tweet</h2>
+    <p>
+      <span class="dquo">&#8220;</span>{{ util.linkify_tweet(escape(info['tweet'].text)) }}&#8221;<br/>
+      - {{ escape(util.relative_time(info['tweet'].time_created)) }}&nbsp;&nbsp;
+    <a href="{{ info['tweet'].link }}" rel="nofollow">link</a>
+    </p>
+  </div>
 </div>
 
 <hr/>

@@ -1,3 +1,44 @@
+#actionBoxes div { display: inline-block; vertical-align: top; }
+
+#actionBoxes div:nth-last-child(-n+1) {
+   width: 230px;
+}
+
+/* Give a right border to all but the last action box */
+#actionBoxes div:nth-child(-n+2) { 
+   width: 270px;
+   padding-right:24px;
+   margin-right:25px;
+   border-right:1px solid #eee; 
+}
+
+/* small titles */
+#actionBoxes div h2 {
+   font-size: 1em;
+   font-weight: bold;
+}
+
+/* small text, indent the text a little */
+#actionBoxes div p {
+   margin-left: 8px;
+   font-size: 10px;
+   line-height: 1.44em;
+}
+
+#titleBox {
+   margin-bottom: 18px;
+   border-bottom: 1px solid #eee;
+}
+
+#titleBox h1 {
+   display: inline;
+   margin-right: 20px;
+}
+
+#titleBox h2 {
+   display: inline;
+}
+
 img.favicon {height: 8px; width: 8px;}
 img.centered { vertical-align: middle; }
 

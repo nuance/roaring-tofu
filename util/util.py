@@ -24,10 +24,10 @@ def relative_time(date):
 	else:
 		return "on %s" % date.strftime("%B %e")
 
-def _link(frmt, group=1):
+def _link(fmt):
 	def _sub_fn(match):
 		groups = dict((str(k), v) for k, v in enumerate(match.groups()))
-		return frmt % groups
+		return fmt % groups
 	return _sub_fn
 
 def linkify_tweet(text):
@@ -36,8 +36,8 @@ def linkify_tweet(text):
 	tag_re = "(^|\s)#(\w+)"
 
 	text = re.sub(url_re, _link("<a rel=\"nofollow\" href=\"%(0)s\">%(0)s</a>"), text)
-	text = re.sub(user_re, _link("<a rel=\"nofollow\" href=\"http://twitter.com/%(1)s\">@%(1)s</a>"), text)
-	text = re.sub(tag_re, _link("<a rel=\"nofollow\" href=\"http://search.twitter.com/search?q=%(1)s\">#%(1)s</a>"), text)
+	text = re.sub(user_re, _link("%(0)s<a rel=\"nofollow\" href=\"http://twitter.com/%(1)s\">@%(1)s</a>"), text)
+	text = re.sub(tag_re, _link("%(0)s<a rel=\"nofollow\" href=\"http://search.twitter.com/search?q=%(1)s\">#%(1)s</a>"), text)
 
 	return text
 
