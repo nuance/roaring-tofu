@@ -1,3 +1,7 @@
+import datetime
+import os
+import stat
+
 from batch import Batch
 from model import Post, meta
 
@@ -11,11 +15,21 @@ class AddPost(Batch):
 
 		print "File name:", self.options.file
 
-		post = Post(self.options.file)
-		meta.session.add(post)
-		meta.session.commit()
+		existing = Post.by_file(self.options.file)
+		if existing:
+			st = os.stat(self.options.file)
+			existing.time_modified = datetime.datetime.fromtimestamp(st[stat.ST_MTIME])
 
-		print "Added blog post %s" % meta.session.query(Post).filter(Post.id == post.id).all()
+			meta.session.add(existing)
+			meta.session.commit()
+
+			print "updated blog post %s" % existing
+		else:
+			post = Post(self.options.file)
+			meta.session.add(post)
+			meta.session.commit()
+
+			print "Added blog post %s" % meta.session.query(Post).filter(Post.id == post.id).all()
 
 if __name__ == "__main__":
 	batch = AddPost()

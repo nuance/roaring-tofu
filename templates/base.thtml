@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-	  <title>{% block title %}Matt Jones{% end %}</title>
+	  <title>{% block title %}{% end %} The Book of Jones</title>
 	  {{ modules.BlueprintCSS() }}
 	  {{ modules.BaseCSS() }}
   </head>

@@ -32,9 +32,9 @@ t_post = Table("md_post", meta.metadata,
 class Post(object):
 	def __init__(self, file_name):
 		md = markdown.Markdown(extensions=['meta', 'codehilite'])
-		md.convert(open(file_name).read())
+		md.convert(open(os.path.join(config.base_path, file_name)).read())
 
-		self.file_name = os.path.join(config.posts_path, file_name)
+		self.file_name = file_name
 		self.title = md.Meta['title'][0]
 		self.alias = to_base37(self.title)
 
@@ -59,7 +59,7 @@ class Post(object):
 
 	@property
 	def content(self):
-		with open(self.file_name) as f:
+		with open(os.path.join(config.base_path, self.file_name)) as f:
 			raw_content = f.read()
 
 		return markdown.markdown(raw_content, extensions=['meta', 'codehilite'])
@@ -74,6 +74,13 @@ class Post(object):
 
 		if post:
 			return post[0]
+
+	@classmethod
+	def by_file(cls, file_name):
+		posts = meta.session.query(Post).filter(Post.file_name == file_name).all()
+
+		if posts:
+			return posts[0]
 
 	@classmethod
 	def list_posts(cls, limit=5, offset=0):

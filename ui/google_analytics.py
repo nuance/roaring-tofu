@@ -1,6 +1,6 @@
 import tornado.web
 
-import private
+import config
 
 class GoogleAnalytics(tornado.web.UIModule):
 	def render(self):
@@ -14,7 +14,7 @@ class GoogleAnalytics(tornado.web.UIModule):
 
 	def embedded_javascript(self):
 		return """try{
-	      			var pageTracker = _gat._getTracker("UA-""" + private.ga_key + """");
+	      			var pageTracker = _gat._getTracker("UA-""" + config.ga_key + """");
 	        		pageTracker._trackPageview();
 	    			} catch(err) {}"""
 
