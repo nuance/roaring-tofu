@@ -25,14 +25,18 @@ t_post = Table("md_post", meta.metadata,
 			   Column("id", types.Integer, primary_key=True),
 			   Column("title", types.Unicode, nullable=False),
 			   Column("alias", types.Unicode, nullable=False),
+			   Column("markdown_content", types.String, nullable=False),
 			   Column("file_name", types.Unicode, nullable=False),
 			   Column('time_created', types.DateTime, default=func.current_timestamp(), nullable=False),
 			   Column('time_modified', types.DateTime, default=None, nullable=True))
 
 class Post(object):
 	def __init__(self, file_name):
+		self.markdown_content = open(os.path.join(config.base_path, file_name)).read()
+
+		# validate that it's markdown
 		md = markdown.Markdown(extensions=['meta', 'codehilite'])
-		md.convert(open(os.path.join(config.base_path, file_name)).read())
+		md.convert(self.markdown_content)
 
 		self.file_name = file_name
 		self.title = md.Meta['title'][0]
@@ -59,10 +63,7 @@ class Post(object):
 
 	@property
 	def content(self):
-		with open(os.path.join(config.base_path, self.file_name)) as f:
-			raw_content = f.read()
-
-		return markdown.markdown(raw_content, extensions=['meta', 'codehilite'])
+		return markdown.markdown(self.markdown_content, extensions=['meta', 'codehilite'])
 
 	@property
 	def url(self):

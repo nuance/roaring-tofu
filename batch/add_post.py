@@ -1,4 +1,5 @@
 import datetime
+import markdown
 import os
 import stat
 
@@ -17,6 +18,14 @@ class AddPost(Batch):
 
 		existing = Post.by_file(self.options.file)
 		if existing:
+			content = open(self.options.file).read()
+
+			# validate that it's markdown
+			md = markdown.Markdown(extensions=['meta', 'codehilite'])
+			md.convert(content)
+
+			existing.markdown_content = content
+
 			st = os.stat(self.options.file)
 			existing.time_modified = datetime.datetime.fromtimestamp(st[stat.ST_MTIME])
 
