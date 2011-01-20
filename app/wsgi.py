@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import private
+
 import logging
 import wsgiref
 
