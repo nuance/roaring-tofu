@@ -1,7 +1,7 @@
 from handlers.base import BaseHandler
 from model import Post, meta
 
-class index(BaseHandler):
+class Home(BaseHandler):
 	_path = '/(\d*)'
 
 	def get(self, offset):

@@ -9,23 +9,24 @@
     <img src="/static/images/me.png"/><br/>
     <p>I'm a recent Berkeley grad working at Yelp. In the computer world I'm most excited by machine learning and natural language processing (especially of the bayesian and unsupervised variety), low-level performance tricks, and cool hacks.</p>
     <p>In the real world, I love to cook and travel.<p>
-	<p>I'm happily employed, but here's my <a href="/resume">resume</a>, just in case.
+	<p>I'm happily employed, but here's my <a href="/resume/blog">resume</a>, just in case.
   </div>
 
   <!-- del.icio.us-style article syndication -->
   <div class="box">
     <h4>Recently Read</h4>
     {% for article in info['articles'] %}
-	  <div>
-		<img src="{{ article.favicon }}" alt="{{ escape(article.domain) }}" class="favicon"/>
+      <div>
+		  {% if article.favicon %}
+		  <img src="{{ article.favicon }}" alt="{{ escape(article.domain) }}" class="favicon"/>
+		{% end %}
 		<span class="title">
 		  <a href="{{article.url}}">{{ escape(article.title) }}</a>
 		</span>
 		- <a href="{{ article.url }}">({{ escape(article.domain) }})</a>
 		- {{ escape(util.relative_time(article.time_added)) }}
 	  </div>
-      {% end %}
-    </p>
+    {% end %}
   </div>
   <hr class="space"/>
 </div>

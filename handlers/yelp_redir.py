@@ -2,7 +2,7 @@ from urllib import quote, unquote
 from tornado import web
 from base import BaseHandler
 
-class yelp_redir(BaseHandler):
+class YelpRedir(BaseHandler):
 	_path = '/yelp/(.*)'
 
 	def get(self, query):

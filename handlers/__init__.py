@@ -1,1 +1,1 @@
-import app_urls, blog, home, yelp_redir
+import app_urls, blog, home, resume, yelp_redir

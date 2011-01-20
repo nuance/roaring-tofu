@@ -1,5 +1,7 @@
 import datetime
 import json
+import socket
+import urlparse
 import urllib2
 
 from batch import Batch
@@ -20,16 +22,35 @@ class ImportRecentlyRead(Batch):
 
 		articles = json.loads(pinboard_data)
 
+		# set a low timeout before we look up favicons. we assume that
+		# a reasonable server will response in < 5000 ms for a 404
+		socket.setdefaulttimeout(5.0)
+		favico_cache = {}
+
 		for article in articles:
 			url = article['u']
 			title = article['d']
-			# '2011-01-18T17:33:19Z'
-			time_added = datetime.datetime.strptime(article['dt'], '%Y-%m-%dT%H:%M:%SZ')
 
 			if url in urls or url in added:
 				continue
 
-			article = Article(title, url, time_added)
+			hostname = urlparse.urlparse(url).hostname
+
+			if hostname in favico_cache:
+				has_favicon = favico_cache[hostname]
+			else:
+				# Try fetching the favicon
+				try:
+					urllib2.urlopen('http://' + hostname + '/favicon.ico').read()
+					has_favicon = True
+				except (urllib2.HTTPError, urllib2.URLError):
+					has_favicon = False
+				favico_cache[hostname] = has_favicon
+
+			# '2011-01-18T17:33:19Z'
+			time_added = datetime.datetime.strptime(article['dt'], '%Y-%m-%dT%H:%M:%SZ')
+
+			article = Article(title, url, time_added, has_favicon)
 			self.log.info("added %s => %s (at time %s)" % (title, url, time_added))
 
 			added.add(url)

@@ -11,16 +11,15 @@ t_article = Table("article", meta.metadata,
 				  Column("id", types.Integer, primary_key=True),
 				  Column("title", types.Unicode, nullable=False),
 				  Column("url", types.Unicode, nullable=False),
+				  Column("has_favicon", types.Boolean, nullable=False),
 				  Column('time_added', types.DateTime, nullable=False))
 
 class Article(object):
-	def __init__(self, title, url, time_added=None):
+	def __init__(self, title, url, time_added, has_favicon):
 		self.title = title
 		self.url = url
-		if time_added:
-			self.time_added = time_added
-		else:
-			self.time_added = datetime.datetime.now()
+		self.has_favicon = has_favicon
+		self.time_added = time_added
 
 		self.id = None
 
@@ -38,7 +37,8 @@ class Article(object):
 
 	@property
 	def favicon(self):
-		return "http://" + urlparse.urlparse(self.url).hostname + "/favicon.ico"
+		if self.has_favicon:
+			return "http://" + urlparse.urlparse(self.url).hostname + "/favicon.ico"
 
 	@classmethod
 	def recent_articles(cls, number=5):
