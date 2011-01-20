@@ -10,7 +10,7 @@ from sqlalchemy import orm
 
 import config
 import meta
-from util import to_base37
+from util import to_base37, uri
 
 t_old_post = Table("post", meta.metadata,
                    Column("id", types.Integer, primary_key=True),
@@ -64,9 +64,16 @@ class Post(object):
 
 		return markdown.markdown(raw_content, extensions=['meta', 'codehilite'])
 
+	@property
+	def url(self):
+		return uri.Blog.view_post(self.alias)
+
 	@classmethod
 	def by_alias(cls, alias):
-		return meta.session.query(Post).filter(Post.alias == alias).all()
+		post = meta.session.query(Post).filter(Post.alias == alias).all()
+
+		if post:
+			return post[0]
 
 	@classmethod
 	def list_posts(cls, limit=5, offset=0):

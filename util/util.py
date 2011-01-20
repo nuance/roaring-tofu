@@ -1,20 +1,11 @@
 import datetime
 import re
-from mako.template import Template
-from mako.lookup import TemplateLookup
-
-template_lookup = TemplateLookup(directories=['templates'], module_directory='/tmp/mako_modules', output_encoding='utf-8')
-
-def render_mako(templatename, **kwargs):
-    template = template_lookup.get_template(templatename)
-    return template.render(**kwargs)
 
 def batch(fun):
 	"""
 	no-op for now, but this should signify functions that can only be ran in batch mode (eg from the command line)
 	"""
 	return fun
-
 
 def relative_time(date): 
 	now = datetime.datetime.now()

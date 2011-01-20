@@ -1,0 +1,7 @@
+{% extends "base.thtml" %}
+
+{% block body %}
+  <div class="blog push-05 span-15 colborder">
+    {{ modules.BlogPost(post, single_post=True) }}
+  </div>
+{% end %}

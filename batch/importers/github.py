@@ -58,7 +58,7 @@ class ImportCommits(Batch):
 				offset = datetime.timedelta(seconds=(offset_hours * 60 + offset_minutes) * 60)
 
 				commit = Commit(raw_commit['id'], project, raw_commit['message'],
-								raw_commit['url'], author_time + offset)
+								'http://github.com/%s' % raw_commit['url'], author_time + offset)
 
 				meta.session.add(commit)
 

@@ -1,0 +1,23 @@
+<div class="post">
+  <div class="post-header">
+    <h2 class="post-title">{{ escape(post.title) }}</h2>
+    {% if not single_post %}
+	    <span class="small title-permalink">
+	      <a href="{{ post.url }}">permalink</a>
+	    </span>
+	  {% end %}
+  </div>
+	<div class="post_time">
+    Posted {{ post.date_created }}
+    {% if post.updated and post.date_created != post.date_modified %}
+      <em>Updated: {{ post.date_modified }}</em>
+	  {% end %}
+  </div>
+	<p class="post_body">{{ post.content }}</p>
+
+	{% if single_post %}
+	  {{ modules.DisqusComments(post) }}
+	{% else %}
+	  {{ modules.DisqusSlug(post) }}
+  {% end %}
+</div>

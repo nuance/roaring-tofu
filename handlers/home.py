@@ -14,7 +14,26 @@ class index(BaseHandler):
 
 		if offset > count:
 			# temp redirect to home
-			pass
+			self.redirect('/')
 
-		self.render_blog(post_count=count, offset=offset, rpp=5)
+		rpp = 5
 
+		posts = meta.session.query(Post).order_by(Post.time_created.desc()).limit(rpp).offset(offset).all()
+		header = self.load_header()
+
+		prev = None
+		if offset:
+			prev = max(offset - rpp, 0)
+		next = None
+		if offset + rpp < count:
+			next = min(count - 1, offset + rpp)
+
+		newer_url = None
+		if prev:
+			newer_url = '/%d' % (prev,)
+
+		older_url = None
+		if next:
+			older_url = '/%d' % (next,)
+
+		self.render('blog.thtml', header=header, posts=posts, newer_url=None, older_url=None)

@@ -21,6 +21,10 @@ class Blog(URIBase):
 	def view_post(cls, post_alias):
 		return "/post/%s" % post_alias
 
+	@classmethod
+	def offset(cls, offset):
+		return "/"
+
 class Twitter(URIBase):
 	@classmethod
 	def tweet_url(cls, user, tweet_id):

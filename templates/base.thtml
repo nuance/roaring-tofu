@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <title>{% block title %}Matt Jones{% end %}</title>
+	  {{ modules.BlueprintCSS() }}
+  </head>
+  <body>
+    <div class="container">
+      {{ modules.Header(header) }}
+
+      {% block body %}{% end %}
+      
+      {{ modules.Sidebar(header) }}
+    </div>
+    {{ modules.GoogleAnalytics() }}
+  </body>
+</html>

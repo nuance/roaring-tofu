@@ -13,8 +13,7 @@ class view_post(BaseHandler):
 		post = Post.by_alias(alias)
 
 		if not post:
-			# 404
-			return app_blog.notfound()
+			raise web.HTTPError(404)
 
-		self.render_blog(posts=post, rpp=1)
-
+		header = self.load_header()
+		self.render('post.thtml', header=header, post=post)

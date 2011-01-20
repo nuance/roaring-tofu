@@ -1,0 +1,17 @@
+{% extends "base.thtml" %}
+
+{% block body %}
+  <div class="blog push-05 span-15 colborder">
+    {% if newer_url %}
+      <a class="pager" href={{ newer_url }}>Newer posts</a>
+    {% end %}
+
+    {% for post in posts %}
+      {{ modules.BlogPost(post) }}
+    {% end %}
+    
+    {% if older_url %}
+      <a class="pager" href={{ older_url }}>Older posts</a>
+    {% end %}
+  </div>
+{% end %}
