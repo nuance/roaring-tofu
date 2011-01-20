@@ -13,7 +13,7 @@ import config
 from model import init_model
 import handlers
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(filename=config.app_log, level=logging.INFO)
 log = logging.getLogger('app.wsgi')
 
 application = tornado.wsgi.WSGIApplication(handlers.app_urls.urls, **config.http_params)
