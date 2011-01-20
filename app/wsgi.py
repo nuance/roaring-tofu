@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import private
+import wsgi_environ
 
 import logging
 import wsgiref
@@ -14,10 +14,10 @@ import handlers
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger('app.wsgi')
 
-app = tornado.wsgi.WSGIApplication(handlers.app_urls.urls, **config.http_params)
+application = tornado.wsgi.WSGIApplication(handlers.app_urls.urls, **config.http_params)
 
 read_conn = create_engine(config.engine_url, **config.engine_params)
 init_model(read_conn)
 
 if __name__ == "__main__":
-	wsgiref.handlers.CGIHandler().run(app)
+	wsgiref.handlers.CGIHandler().run(application)
