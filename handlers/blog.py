@@ -10,7 +10,7 @@ class view_post(BaseHandler):
 	_path = '/post/(.+)'
 
 	def get(self, alias):
-		post = Post.by_alias(alias)
+		post = Post.by_alias(unicode(alias))
 
 		if not post:
 			raise web.HTTPError(404)
