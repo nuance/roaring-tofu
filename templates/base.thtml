@@ -4,6 +4,7 @@
 	  <title>{% block title %}{% end %} The Book of Jones</title>
 	  {{ modules.BlueprintCSS() }}
 	  {{ modules.BaseCSS() }}
+	  {{ modules.Feeds() }}
   </head>
   <body>
     <div class="container">
