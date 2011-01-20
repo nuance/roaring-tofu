@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-import wsgi_environ
+import site
+site.addsitedir('/srv/www/domains/mhjones.org')
+site.addsitedir('/srv/www/domains/mhjones.org/virtualenv/lib/python2.6/site-packages')
 
 import logging
 import wsgiref
