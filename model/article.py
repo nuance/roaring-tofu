@@ -30,7 +30,11 @@ class Article(object):
 
 	@property
 	def domain(self):
-		return urlparse.urlparse(self.url).hostname
+		hostname = urlparse.urlparse(self.url).hostname
+
+		if hostname.startswith('www.'):
+			return hostname[4:]
+		return hostname		
 
 	@property
 	def favicon(self):

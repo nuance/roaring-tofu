@@ -3,6 +3,7 @@
   <head>
 	  <title>{% block title %}Matt Jones{% end %}</title>
 	  {{ modules.BlueprintCSS() }}
+	  {{ modules.BaseCSS() }}
   </head>
   <body>
     <div class="container">

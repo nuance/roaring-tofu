@@ -1,7 +1,7 @@
 {% extends "base.thtml" %}
 
 {% block body %}
-  <div class="blog push-05 span-15 colborder">
+  <div id="blog">
     {% if newer_url %}
       <a class="pager" href={{ newer_url }}>Newer posts</a>
     {% end %}

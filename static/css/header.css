@@ -1,3 +1,22 @@
+#titleBox {
+   margin-bottom: 18px;
+   border-bottom: 1px solid #eee;
+}
+
+#titleBox h1 {
+   display: inline;
+   margin-right: 20px;
+}
+
+#titleBox h1 a { 
+   text-decoration: none; 
+   color: black;
+}
+
+#titleBox h2 {
+   display: inline;
+}
+
 #actionBoxes div { display: inline-block; vertical-align: top; }
 
 #actionBoxes div:nth-last-child(-n+1) {
@@ -25,31 +44,25 @@
    line-height: 1.44em;
 }
 
-#titleBox {
-   margin-bottom: 18px;
-   border-bottom: 1px solid #eee;
-}
-
-#titleBox h1 {
-   display: inline;
-   margin-right: 20px;
-}
-
-#titleBox h2 {
-   display: inline;
-}
-
-img.favicon {height: 8px; width: 8px;}
+img.favicon { height: 8px; width: 8px; }
 img.centered { vertical-align: middle; }
-
-div.header { margin-bottom: 0px; }
-div.subheader { margin-bottom: 0px; padding-top: 3px; }
-
-p.indent { margin-left: 8px; }
 
 .pager { text-align: center; }
 
-hr.thin { margin-bottom: 9px; margin-top: 9px; }
-div.top-box { height: 120px; margin-bottom: 9px;}
+#sidebar {
+   width: 230px;
+   display: inline-block;
+   vertical-align: top;
+}
 
-h1 a { text-decoration: none; color: black;}
+#sidebar .box {
+   padding:1.5em;
+   margin-bottom:1.5em;
+   background:#E5ECF9;
+}
+
+#sidebar .title a {
+   font-weight: bold;
+   text-decoration: none; 
+   color: black;
+}

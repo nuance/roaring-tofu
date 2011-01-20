@@ -1,26 +1,31 @@
 {% import util %}
 
 <!-- Side bar -->
-<div id="sidebar" class="rightbar span-6 last">
-  
+<div id="sidebar">
+
   <!-- About me -->
-  <div id="aboutme" class="box">
+  <div class="box">
     <h3>About Me</h3>
     <img src="/static/images/me.png"/><br/>
     <p>I'm a recent Berkeley grad working at Yelp. In the computer world I'm most excited by machine learning and natural language processing (especially of the bayesian and unsupervised variety), low-level performance tricks, and cool hacks.</p>
-    <p>In the real world, I love to cook, travel and I'm getting back into rock climbing.</p>
+    <p>In the real world, I love to cook and travel.<p>
+	<p>I'm happily employed, but here's my <a href="/resume">resume</a>, just in case.
   </div>
-  <hr class="space"/>
 
-<!-- del.icio.us-style article syndication -->
-<div id="articles" class="box">
-    <h6>Recently Read</h6>
-    <p class="incr">
-      {% for article in info['articles'] %}
-        <span class="span-1"><img src="{{ article.favicon }}" alt="{{ escape(article.domain) }}" class="favicon"/></span>
-        {{ escape(article.title) }} - <a href="{{ article.url }}">({{ escape(article.domain) }})</a> - {{ escape(util.relative_time(article.time_added)) }}<br/>
-	    {% end %}
+  <!-- del.icio.us-style article syndication -->
+  <div class="box">
+    <h4>Recently Read</h4>
+    {% for article in info['articles'] %}
+	  <div>
+		<img src="{{ article.favicon }}" alt="{{ escape(article.domain) }}" class="favicon"/>
+		<span class="title">
+		  <a href="{{article.url}}">{{ escape(article.title) }}</a>
+		</span>
+		- <a href="{{ article.url }}">({{ escape(article.domain) }})</a>
+		- {{ escape(util.relative_time(article.time_added)) }}
+	  </div>
+      {% end %}
     </p>
-</div>
+  </div>
   <hr class="space"/>
 </div>
