@@ -5,4 +5,5 @@ from disqus import DisqusComments, DisqusSlug
 from feeds import Feeds
 from google_analytics import GoogleAnalytics
 from header import Header
+from mixpanel import Mixpanel
 from sidebar import Sidebar

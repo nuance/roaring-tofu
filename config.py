@@ -9,6 +9,7 @@ yelp_user = '5UeW6xMmWClWcOrw6cPXXg'
 pinboard_json_feed = 'http://feeds.pinboard.in/json/v1/u:nuance/'
 
 ga_key = "2393143-1"
+mixpanel_key = "57a71122b2415e43874dcf95edccd401"
 
 http_params = {'static_path': 'static', 'debug': True, 'ui_modules': ui, 'template_path': os.path.join(base_path, 'templates')}
 
