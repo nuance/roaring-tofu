@@ -15,5 +15,6 @@
       {{ modules.Sidebar(header) }}
     </div>
     {{ modules.GoogleAnalytics() }}
+    {{ modules.Mixpanel() }}
   </body>
 </html>
