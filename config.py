@@ -10,5 +10,5 @@ pinboard_json_feed = 'http://feeds.pinboard.in/json/v1/u:nuance/'
 
 ga_key = "2393143-1"
 
-http_params = {'static_path': 'static', 'debug': True, 'ui_modules': ui, 'template_path': os.path.join(base_path, 'templates')}
+http_params = {'static_path': 'static', 'ui_modules': ui, 'template_path': os.path.join(base_path, 'templates')}
 
