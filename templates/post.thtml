@@ -1,9 +1,9 @@
 {% extends "base.thtml" %}
 
-{% block title %}{{escape(post.title)}} -{% end %}
+{% block title %}{{ post.title }} -{% end %}
 
 {% block body %}
   <div class="blog push-05 span-15 colborder">
-    {{ modules.BlogPost(post, single_post=True) }}
+    {% modules BlogPost(post, single_post=True) %}
   </div>
 {% end %}

@@ -7,7 +7,7 @@
     {% end %}
 
     {% for post in posts %}
-      {{ modules.BlogPost(post) }}
+      {% module BlogPost(post) %}
     {% end %}
     
     {% if older_url %}

@@ -2,19 +2,19 @@
 <html>
   <head>
 	  <title>{% block title %}{% end %} The Book of Jones</title>
-	  {{ modules.BlueprintCSS() }}
-	  {{ modules.BaseCSS() }}
-	  {{ modules.Feeds() }}
+	  {% module BlueprintCSS() %}
+	  {% module BaseCSS() %}
+	  {% module Feeds() %}
   </head>
   <body>
     <div class="container">
-      {{ modules.Header(header) }}
+      {% module Header(header) %}
 
       {% block body %}{% end %}
       
-      {{ modules.Sidebar(header) }}
+      {% module Sidebar(header) %}
     </div>
-    {{ modules.GoogleAnalytics() }}
-    {{ modules.Mixpanel() }}
+    {% module GoogleAnalytics() %}
+    {% module Mixpanel() %}
   </body>
 </html>

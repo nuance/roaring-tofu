@@ -1,6 +1,6 @@
 <div class="post">
   <div class="post-header">
-    <h2 class="post-title">{{ escape(post.title) }}</h2>
+    <h2 class="post-title">{{ post.title }}</h2>
     {% if not single_post %}
       <span class="small title-permalink">
 		<a href="{{ post.url }}">permalink</a>
@@ -14,11 +14,11 @@
     {% end %}
   </div>
 
-  <div class="post_body">{{ post.content }}</div>
+  <div class="post_body">{% raw post.content %}</div>
 
   {% if single_post %}
-    {{ modules.DisqusComments(post) }}
+    {% module DisqusComments(post) %}
   {% else %}
-    {{ modules.DisqusSlug(post) }}
+    {% module DisqusSlug(post) %}
   {% end %}
 </div>

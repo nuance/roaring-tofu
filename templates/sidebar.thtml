@@ -18,13 +18,13 @@
     {% for article in info['articles'] %}
       <div>
 		  {% if article.favicon %}
-		  <img src="{{ article.favicon }}" alt="{{ escape(article.domain) }}" class="favicon"/>
+		  <img src="{{ article.favicon }}" alt="{{ article.domain }}" class="favicon"/>
 		{% end %}
 		<span class="title">
-		  <a href="{{article.url}}">{{ escape(article.title) }}</a>
+		  <a href="{{article.url}}">{{ article.title }}</a>
 		</span>
-		- <a href="{{ article.url }}">({{ escape(article.domain) }})</a>
-		- {{ escape(util.relative_time(article.time_added)) }}
+		- <a href="{{ article.url }}">({{ article.domain }})</a>
+		- {{ util.relative_time(article.time_added) }}
 	  </div>
     {% end %}
   </div>

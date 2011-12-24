@@ -13,10 +13,10 @@
     <h2>Recent Reviews</h2>
     <p>
       {% for review in info['reviews'] %}
-        <a href="{{ review.url }}" rel="nofollow"> {{ escape(review.business)}}</a> -
+        <a href="{{ review.url }}" rel="nofollow"> {{ review.business}}</a> -
           <img src="{{ review.stars_img }}" alt="{{ review.rating }}/5 stars" class="centered"> -
-          {{ escape(review.snippet) }} -
-  	      {{ escape(util.relative_time(review.time_authored)) }}<br/>
+          {{ review.snippet }} -
+  	      {{ util.relative_time(review.time_authored) }}<br/>
       {% end %}
     </p>
   </div>
@@ -26,7 +26,7 @@
     <h2>Recent Commits</h2>
     <p>
       {% for commit in info['commits'] %}
-        <a href="{{ commit.url }}" rel="nofollow">{{ escape(commit.project) }}</a> - {{ escape(commit.message) }} - {{ util.relative_time(commit.time_authored) }}<br/>
+        <a href="{{ commit.url }}" rel="nofollow">{{ commit.project }}</a> - {{ commit.message }} - {{ util.relative_time(commit.time_authored) }}<br/>
       {% end %}
     </p>
   </div>
@@ -35,8 +35,8 @@
   <div>
     <h2>Recent Tweet</h2>
     <p>
-      <span class="dquo">&#8220;</span>{{ util.linkify_tweet(escape(info['tweet'].text)) }}&#8221;<br/>
-      - {{ escape(util.relative_time(info['tweet'].time_created)) }}&nbsp;&nbsp;
+      <span class="dquo">&#8220;</span>{% raw util.linkify_tweet(info['tweet'].text) %}&#8221;<br/>
+      - {{ util.relative_time(info['tweet'].time_created) }}&nbsp;&nbsp;
     <a href="{{ info['tweet'].link }}" rel="nofollow">link</a>
     </p>
   </div>
