@@ -3,3 +3,4 @@
 *.pyc
 private.py
 blog.sqlite
+virtualenv
