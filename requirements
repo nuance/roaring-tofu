@@ -6,4 +6,3 @@ meld3==0.6.7
 supervisor==3.0a12
 tornado==2.1.1
 wsgiref==0.1.2
-zygote==0.1
