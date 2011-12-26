@@ -1,6 +1,12 @@
 #!/usr/bin/env python
+import os.path
+
 from sqlalchemy import create_engine
 from tornado import web, ioloop, httpserver, options
+
+import site
+
+site.addsitedir(os.path.dirname(os.path.dirname(__file__)))
 
 import config
 from model import init_model
