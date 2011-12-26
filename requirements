@@ -2,6 +2,5 @@ Markdown==2.1.0
 PyRSS2Gen==1.0.0
 SQLAlchemy==0.7.4
 docutils==0.8.1
-git-remote-helpers==0.1.0
 tornado==2.1.1
 wsgiref==0.1.2
