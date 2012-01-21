@@ -42,6 +42,7 @@ def linkify_tweet(text):
 	return text
 
 base_37_re = re.compile('[^0123456789abcdefghijklmnopqrstuvwxyz]')
-def to_base37(text, repl='-'):
-	ltext = text.lower()
-	return base_37_re.sub(repl, ltext)
+def to_base_37(text, replace='-'):
+	"""Convert text to alphanumeric + -, useful for generating url aliases."""
+	text = text.lower()
+	return base_37_re.sub(replace, text)
