@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-	  <title>{% block title %}{% end %} The Book of Jones</title>
-	  {% module BootstrapCSS() %}
-	  {% module BaseCSS() %}
-	  {% module Feeds() %}
+    <title>{% block title %}{% end %} The Book of Jones</title>
+    {% module BootstrapCSS() %}
+    {% module BaseCSS() %}
+    {% module Feeds() %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <div class="container">
