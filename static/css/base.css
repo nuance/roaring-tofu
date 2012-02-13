@@ -1,11 +1,43 @@
-.container {
-   width: 885px;
+
+#title h1 a { 
+   text-decoration: none; 
+   color: black;
 }
 
-#blog {
-   margin:0 25px 1.5em 7px;
-   width: 590px;
-   padding-right:20px;
-   border-right:1px solid #eee;
-   display: inline-block;
+hr {
+	height: .1em;
+	color: #000;
+	background: #000;
+	margin: .1em;
+}
+
+#items {
+	list-style: none;
+}
+
+ol {
+	margin: 0;
+}
+
+.item {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.ico {
+	display: block;
+	width: 2em;
+	height: 2em;
+	vertical-align: middle;
+}
+
+.char {
+	display: block;
+	width: 2em;
+	height: 2em;
+	vertical-align: middle;
+}
+
+.item h4 {
+	vertical-align: middle;
 }

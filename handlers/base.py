@@ -25,14 +25,3 @@ class BaseHandler(web.RequestHandler):
     @classmethod
     def register(cls):
         return app_urls.connect(cls._path, cls)
-
-    def load_header(self):
-        articles = Article.recent_articles()
-        commits = Commit.recent_commits()
-        reviews = Review.recent_reviews()
-        tweet = Tweet.recent_tweet()
-
-        return {'articles': articles,
-                'commits': commits,
-                'reviews': reviews,
-                'tweet': tweet}

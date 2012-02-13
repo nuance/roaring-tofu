@@ -75,8 +75,12 @@ class Post(object):
 			return posts[0]
 
 	@classmethod
-	def list_posts(cls, limit=5, offset=0):
-		return meta.session.query(Post).order_by(Post.time_created.desc()).limit(limit).offset(offset).all()
+	def recent(cls, limit=5):
+		return meta.session.query(Post).order_by(Post.time_created.desc()).limit(limit).all()
+
+	@property
+	def icon(self):
+		return None
 
 
 orm.mapper(Post, t_post)

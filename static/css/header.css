@@ -1,20 +1,6 @@
-#titleBox {
-   margin-bottom: 18px;
-   border-bottom: 1px solid #eee;
-}
-
-#titleBox h1 {
-   display: inline;
-   margin-right: 20px;
-}
-
 #titleBox h1 a { 
    text-decoration: none; 
    color: black;
-}
-
-#titleBox h2 {
-   display: inline;
 }
 
 #actionBoxes div { display: inline-block; vertical-align: top; }

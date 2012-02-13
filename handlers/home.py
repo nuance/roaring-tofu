@@ -1,39 +1,28 @@
+import operator
+
 from handlers.base import BaseHandler
-from model import Post, meta
+from model import Post, Article, Commit, Me, Review, Tweet, meta
 
 class Home(BaseHandler):
-	_path = '/(\d*)'
+    _path = '/(\d*)'
 
-	def get(self, offset):
-		count = meta.session.query(Post).count()
+    def item_feed(self, limit, offset):
+        blog_posts = Post.recent(offset+limit)
+        articles = Article.recent(offset+limit)
+        commits = Commit.recent(offset+limit)
+        reviews = Review.recent(offset+limit)
+        tweets = Tweet.recent(offset+limit)
 
-		if offset:
-			offset = int(offset)
-		else:
-			offset = 0
+        all_items = blog_posts + articles + commits + reviews + tweets
+        sorted_items = sorted(all_items, key=operator.attrgetter('time_created'), reverse=True)
+        items = sorted_items[offset:offset+limit]
 
-		if offset > count:
-			# temp redirect to home
-			self.redirect('/')
+        for pos, item in enumerate(items):
+            item.pos = pos
 
-		rpp = 5
+        return items
 
-		posts = meta.session.query(Post).order_by(Post.time_created.desc()).limit(rpp).offset(offset).all()
-		header = self.load_header()
+    def get(self, offset):
+        items = self.item_feed(25, 0)
 
-		prev = None
-		if offset:
-			prev = max(offset - rpp, 0)
-		next = None
-		if offset + rpp < count:
-			next = min(count - 1, offset + rpp)
-
-		newer_url = None
-		if prev:
-			newer_url = '/%d' % (prev,)
-
-		older_url = None
-		if next:
-			older_url = '/%d' % (next,)
-
-		self.render('blog.thtml', header=header, posts=posts, newer_url=None, older_url=None)
+        self.render('blog.thtml', items=items, me=Me())

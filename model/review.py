@@ -28,8 +28,18 @@ class Review(object):
 	def all_urls(cls):
 		return set(review.url for review in meta.session.query(cls).all())
 
+	@property
+	def time_created(self):
+		return self.time_authored
+
+	icon = 'R'
+
+	@property
+	def title(self):
+		return self.business
+
 	@classmethod
-	def recent_reviews(cls, number=2):
+	def recent(cls, number=2):
 		query = meta.session.query(cls).group_by(cls.business).order_by(cls.time_authored.desc())
 		return query.limit(number).all()
 

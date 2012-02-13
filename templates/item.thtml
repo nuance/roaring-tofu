@@ -1,0 +1,12 @@
+<{{el}} class="row item" id="{{id}}">
+  <div class="span1">
+    {% if '/' in item.icon %}
+      <a class="ico" href="{{item.url}}"><img src="{{static_url(item.icon)}}"></a>
+    {% else %}
+      <a class="char" href="{{item.url}}">{{item.icon}}</a>
+    {% end %}
+  </div>
+
+  <h4 class="span2">&nbsp;{{ item.title }}</h4>
+  <div class="span8"><p>{% raw item.content %}</p></div>
+</{{el}}>

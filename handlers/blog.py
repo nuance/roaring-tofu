@@ -4,8 +4,7 @@ from model import meta, Post
 from handlers.base import BaseHandler
 
 class BlogPost(BaseHandler):
-	"""
-	Blog servlet
+	"""Blog servlet
 	"""
 	_path = '/post/(.+)'
 
@@ -16,4 +15,4 @@ class BlogPost(BaseHandler):
 			raise web.HTTPError(404)
 
 		header = self.load_header()
-		self.render('post.thtml', header=header, post=post)
+		self.render('post.thtml', header=header, items=[post])

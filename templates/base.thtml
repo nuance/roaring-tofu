@@ -2,17 +2,32 @@
 <html>
   <head>
 	  <title>{% block title %}{% end %} The Book of Jones</title>
-	  {% module BlueprintCSS() %}
+	  {% module BootstrapCSS() %}
 	  {% module BaseCSS() %}
 	  {% module Feeds() %}
   </head>
   <body>
     <div class="container">
-      {% module Header(header) %}
 
-      {% block body %}{% end %}
-      
-      {% module Sidebar(header) %}
+      <!-- Header -->
+      <div class="row" id="title">
+        <h1 class="span5"><a href="/">The Book of Jones</a></h1>
+        <h2 class="span7">Cooking, travel, and techno-babble</h2>
+      </div>
+
+      <hr/><hr/>
+
+      <!-- About me -->
+      {% module Item(me, "div", "me") %} 
+
+      <hr/><hr/>
+
+      <ol id="items">
+      {% for pos, item in enumerate(items) %}
+        {% module Item(item, "li", pos) %}
+      {% end for %}
+      </ol>
+
     </div>
     {% module GoogleAnalytics() %}
     {% module Mixpanel() %}

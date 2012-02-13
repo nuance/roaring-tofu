@@ -1,15 +1,15 @@
 {% import util %}
 
 <!-- Header -->
-<div id="titleBox">
-	<h1><a href="/">The Book of Jones</a></h1>
-	<h2>Cooking, travel, and techno-babble</h2>
+<div class="row" id="titleBox">
+	<h1 class="span4"><a href="/">The Book of Jones</a></h1>
+	<h2 class="span7">Cooking, travel, and techno-babble</h2>
 </div>
 
 <!-- Action Boxes -->
-<div id="actionBoxes">
+<div class="row" id="actionBoxes">
   <!-- Yelp reviews -->
-  <div>
+  <div class="span3">
     <h2>Recent Reviews</h2>
     <p>
       {% for review in info['reviews'] %}
@@ -22,7 +22,7 @@
   </div>
 
   <!-- Github commits -->
-  <div>
+  <div class="span3">
     <h2>Recent Commits</h2>
     <p>
       {% for commit in info['commits'] %}
@@ -32,7 +32,7 @@
   </div>
 
   <!-- Twitter feed -->
-  <div>
+  <div class="span3">
     <h2>Recent Tweet</h2>
     <p>
       <span class="dquo">&#8220;</span>{% raw util.linkify_tweet(info['tweet'].text) %}&#8221;<br/>

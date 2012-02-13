@@ -25,8 +25,22 @@ class Commit(object):
 	def all_hashes(cls):
 		return set(commit.cksum for commit in meta.session.query(cls).all())
 
+	icon = 'C'
+
+	@property
+	def title(self):
+		return self.project
+
+	@property
+	def content(self):
+		return self.message
+
+	@property
+	def time_created(self):
+		return self.time_authored
+
 	@classmethod
-	def recent_commits(cls, number=3):
+	def recent(cls, number=3):
 		last_commits = meta.session.query(cls.project, func.max(cls.time_authored)).group_by(cls.project).order_by(func.max(cls.time_authored).desc()).limit(number).all()
 
 		commits = []

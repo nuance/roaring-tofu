@@ -5,6 +5,7 @@ from sqlalchemy import orm
 from sqlalchemy.sql import not_, select
 
 import meta
+import util
 import util.uri
 
 t_tweet = Table("tweet", meta.metadata,
@@ -15,6 +16,9 @@ t_tweet = Table("tweet", meta.metadata,
 				Column('time_created', types.DateTime, nullable=False))
 
 class Tweet(object):
+	title = 'T'
+	icon = '@'
+
 	def __init__(self, tweet_id, user, text, http_time_created):
 		self.status_id = tweet_id
 		self.text = text
@@ -25,16 +29,22 @@ class Tweet(object):
 		self.id = None
 
 	@property
-	def link(self):
+	def url(self):
 		return util.uri.Twitter.tweet_url(self.user, self.status_id)
 
 	@classmethod
-	def recent_tweet(cls, show_replies=False):
+	def recent(cls, count=1, show_replies=False):
 		query = meta.session.query(cls).order_by(cls.time_created.desc())
 		if not show_replies:
 			query = query.filter(not_(cls.text.like("@%")))
-		rows = query.limit(1).all()
-		if not rows: return None
-		return rows[0]
+		return query.limit(count).all()
+
+	@property
+	def content(self):
+		return util.linkify_tweet(self.text)
+
+	@property
+	def icon(self):
+		return ""
 
 orm.mapper(Tweet, t_tweet)

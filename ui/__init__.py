@@ -1,9 +1,6 @@
 from base_css import BaseCSS
-from blog_post import BlogPost
-from blueprint import BlueprintCSS
-from disqus import DisqusComments, DisqusSlug
+from bootstrap import BootstrapCSS
 from feeds import Feeds
 from google_analytics import GoogleAnalytics
-from header import Header
+from item import Item
 from mixpanel import Mixpanel
-from sidebar import Sidebar

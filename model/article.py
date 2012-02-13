@@ -8,42 +8,48 @@ import meta
 import util.uri
 
 t_article = Table("article", meta.metadata,
-				  Column("id", types.Integer, primary_key=True),
-				  Column("title", types.Unicode, nullable=False),
-				  Column("url", types.Unicode, nullable=False),
-				  Column("has_favicon", types.Boolean, nullable=False),
-				  Column('time_added', types.DateTime, nullable=False))
+                  Column("id", types.Integer, primary_key=True),
+                  Column("title", types.Unicode, nullable=False),
+                  Column("url", types.Unicode, nullable=False),
+                  Column("has_favicon", types.Boolean, nullable=False),
+                  Column('time_added', types.DateTime, nullable=False))
 
 class Article(object):
-	def __init__(self, title, url, time_added, has_favicon):
-		self.title = title
-		self.url = url
-		self.has_favicon = has_favicon
-		self.time_added = time_added
+    def __init__(self, title, url, time_added, has_favicon):
+        self.title = title
+        self.url = url
+        self.has_favicon = has_favicon
+        self.time_added = time_added
 
-		self.id = None
+        self.id = None
 
-	@property
-	def link(self):
-		return util.uri.a(self.url, self.title)
+    @property
+    def domain(self):
+        hostname = urlparse.urlparse(self.url).hostname
 
-	@property
-	def domain(self):
-		hostname = urlparse.urlparse(self.url).hostname
+        if hostname.startswith('www.'):
+            return hostname[4:]
+        return hostname     
 
-		if hostname.startswith('www.'):
-			return hostname[4:]
-		return hostname		
+    @property
+    def favicon(self):
+        if self.has_favicon:
+            return "http://" + urlparse.urlparse(self.url).hostname + "/favicon.ico"
 
-	@property
-	def favicon(self):
-		if self.has_favicon:
-			return "http://" + urlparse.urlparse(self.url).hostname + "/favicon.ico"
+    icon = 'A'
 
-	@classmethod
-	def recent_articles(cls, number=5):
-		query = meta.session.query(cls).order_by(cls.time_added.desc())
-		return query.limit(number).all()
+    @property
+    def content(self):
+        return self.title
+
+    @classmethod
+    def recent(cls, number=5):
+        query = meta.session.query(cls).order_by(cls.time_added.desc())
+        return query.limit(number).all()
+
+    @property
+    def time_created(self):
+        return self.time_added
 
 
 orm.mapper(Article, t_article)
