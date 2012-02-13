@@ -24,7 +24,7 @@
 
       <ol id="items">
       {% for pos, item in enumerate(items) %}
-        {% module Item(item, "li", pos) %}
+        {% module Item(item, "li", pos, items[pos-1] if pos else None) %}
       {% end for %}
       </ol>
 

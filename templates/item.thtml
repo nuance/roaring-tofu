@@ -7,6 +7,12 @@
     {% end %}
   </div>
 
-  <h4 class="span2">&nbsp;{{ item.title }}</h4>
+  <h4 class="span2">&nbsp;
+  	{% if item.title == last_title %}
+  	.
+  	{% else %}
+  	{{ item.title }}
+  	{% end %}
+  </h4>
   <div class="span8"><p>{% raw item.content %}</p></div>
 </{{el}}>

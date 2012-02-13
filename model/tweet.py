@@ -16,7 +16,7 @@ t_tweet = Table("tweet", meta.metadata,
 				Column('time_created', types.DateTime, nullable=False))
 
 class Tweet(object):
-	title = 'T'
+	title = 'tweet'
 	icon = '@'
 
 	def __init__(self, tweet_id, user, text, http_time_created):
@@ -43,8 +43,5 @@ class Tweet(object):
 	def content(self):
 		return util.linkify_tweet(self.text)
 
-	@property
-	def icon(self):
-		return ""
 
 orm.mapper(Tweet, t_tweet)
