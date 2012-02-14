@@ -1,4 +1,14 @@
 
+@media (max-width: 768px) {
+	.item .itemHeader {
+		width: 100%
+	}
+
+	.itemHeader h4 {
+		width: 70%;
+	}
+}
+
 #title h1 a { 
    text-decoration: none; 
    color: black;
@@ -26,6 +36,7 @@ ol {
 
 .item .itemHeader {
 	margin-bottom: 1em;
+	float: left;
 }
 
 .ico {

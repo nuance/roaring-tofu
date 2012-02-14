@@ -1,12 +1,12 @@
 <{{el}} class="row item" id="{{id}}">
-  <div class="span4 itemHeader">
+  <div class="itemHeader">
     {% if '/' in item.icon %}
       <a class="ico span1" href="{{item.url}}"><img src="{{static_url(item.icon)}}"></a>
     {% else %}
       <a class="char span1" href="{{item.url}}">{{item.icon}}</a>
     {% end %}
     
-    <h4 class="title span2">
+    <h4 class="span2">
       {% if item.title == last_title %}
       &#183;
       {% else %}
