@@ -1,4 +1,4 @@
-import cjson
+import json
 import datetime
 import logging
 import urllib2
@@ -12,7 +12,7 @@ log = logging.getLogger('import.github')
 class GitHub(object):
 	@classmethod
 	def load_user(cls, user_name):
-		user_info = cjson.decode(urllib2.urlopen("http://github.com/api/v1/json/%s" % user_name).read())['user']
+		user_info = json.loads(urllib2.urlopen("http://github.com/api/v1/json/%s" % user_name).read())['user']
 		user_name = user_info['name']
 		user_projects = [repo['name'] for repo in user_info['repositories'] if not repo['fork']]
 
@@ -21,7 +21,7 @@ class GitHub(object):
 	@classmethod
 	def load_commits(cls, user_name, project):
 		try:
-			commits = cjson.decode(urllib2.urlopen("http://github.com/api/v2/json/commits/list/%s/%s/master" % (user_name, project)).read())['commits']
+			commits = json.loads(urllib2.urlopen("http://github.com/api/v2/json/commits/list/%s/%s/master" % (user_name, project)).read())['commits']
 		except Exception, e:
 			log.exception('Exception loading commits for %s @ %s' % (user_name, project))
 			return []

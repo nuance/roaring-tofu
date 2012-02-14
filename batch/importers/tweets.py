@@ -15,14 +15,10 @@ class ImportTweets(Batch):
 		if not self.options.user:
 			raise Exception("Need a user to load from!")
 
-		last_tweet = Tweet.recent_tweet(show_replies=True)
-
-		since = None
-		if last_tweet:
-			since = last_tweet.time_created.strftime("%a %b %d %H:%M:%S +0000 %Y")
+		last_tweet = Tweet.recent(show_replies=True)[0]
 
 		api = twitter.Api()
-		tweets = api.GetUserTimeline(self.options.user, count=self.options.count, since=since)
+		tweets = api.GetUserTimeline(self.options.user, count=self.options.count, since_id=last_tweet.status_id)
 		added = set()
 
 		for raw_tweet in tweets:
