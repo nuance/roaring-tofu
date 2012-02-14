@@ -1,11 +1,33 @@
 
-@media (max-width: 480px) {
+@media (max-width: 480px) and (-webkit-max-device-pixel-ratio: 1) {
 	.item .itemHeader {
 		width: 100%
 	}
 
 	.itemHeader h4 {
 		width: 70%;
+	}
+}
+
+@media (max-width: 960px) and (-webkit-min-device-pixel-ratio: 2) {
+	.item .itemHeader {
+		width: 100%
+	}
+
+	.itemHeader h4 {
+		width: 70%;
+	}
+}
+
+@media (min-width: 480px) and (max-width: 768px) and (-webkit-max-device-pixel-ratio: 1) {
+	.item .content {
+		margin-left: 2em;
+	}
+}
+
+@media (min-width: 960px) and (max-width: 1536px) and (-webkit-min-device-pixel-ratio: 2) {
+	.item .content {
+		margin-left: 2em;
 	}
 }
 

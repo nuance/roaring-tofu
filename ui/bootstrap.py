@@ -5,4 +5,4 @@ class BootstrapCSS(tornado.web.UIModule):
 		return ''
 
 	def css_files(self):
-		return ["css/bootstrap/bootstrap.min.css", "css/bootstrap/bootstrap.responsive.min.css"]
+		return ["css/bootstrap/bootstrap.min.css", "css/bootstrap/bootstrap.min.responsive.css"]

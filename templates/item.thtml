@@ -14,5 +14,5 @@
       {% end %}
     </h4>
   </div>
-  <div class="span8"><p>{% raw item.content %}</p></div>
+  <div class="span8 content"><p>{% raw item.content %}</p></div>
 </{{el}}>
