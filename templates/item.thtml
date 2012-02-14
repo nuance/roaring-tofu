@@ -1,18 +1,18 @@
 <{{el}} class="row item" id="{{id}}">
-  <div class="span1">
+  <div class="span4 itemHeader">
     {% if '/' in item.icon %}
-      <a class="ico" href="{{item.url}}"><img src="{{static_url(item.icon)}}"></a>
+      <a class="ico span1" href="{{item.url}}"><img src="{{static_url(item.icon)}}"></a>
     {% else %}
-      <a class="char" href="{{item.url}}">{{item.icon}}</a>
+      <a class="char span1" href="{{item.url}}">{{item.icon}}</a>
     {% end %}
+    
+    <h4 class="title span2">
+      {% if item.title == last_title %}
+      &#183;
+      {% else %}
+      {{ item.title }}
+      {% end %}
+    </h4>
   </div>
-
-  <h4 class="span2">&nbsp;
-  	{% if item.title == last_title %}
-  	.
-  	{% else %}
-  	{{ item.title }}
-  	{% end %}
-  </h4>
   <div class="span8"><p>{% raw item.content %}</p></div>
 </{{el}}>

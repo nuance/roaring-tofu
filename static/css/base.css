@@ -24,20 +24,19 @@ ol {
 	margin-bottom: 1em;
 }
 
+.item .itemHeader {
+	margin-bottom: 1em;
+}
+
 .ico {
 	display: block;
 	width: 2em;
-	height: 2em;
 	vertical-align: middle;
 }
 
 .char {
 	display: block;
 	width: 2em;
-	height: 2em;
-	vertical-align: middle;
+	font-size: 14px;
 }
 
-.item h4 {
-	vertical-align: middle;
-}
