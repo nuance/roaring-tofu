@@ -1,6 +1,7 @@
 from tornado.options import logging
 from tornado import web
 
+import private
 from model import Article, Commit, Review, Tweet
 import app_urls
 
@@ -21,6 +22,14 @@ class BaseHandler(web.RequestHandler):
 
     def initialize(self):
         self.log = logging.getLogger('handlers.%s' % (self.__class__.__name__))
+
+    def get_current_user(self):
+        if self.request.protocol != 'https':
+            return None
+
+        secret = self.get_argument('secret', None)
+
+        return private.auth_secrets.get(secret)
 
     @classmethod
     def register(cls):

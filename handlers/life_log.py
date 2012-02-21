@@ -7,17 +7,23 @@ class LifeLog(BaseHandler):
 	"""Life log servlet"""
 	_path = '/log'
 
+	@web.authenticated
 	def get(self):
 		offset = int(self.get_argument('start', '0'))
 
 		self.write({'entries': [entry.jsonable for entry in LogEntry.list(10, offset)]})
 
+	@web.authenticated
 	def post(self):
 		text = self.get_argument('entry')
 
-		entry = LogEntry(text)
-		meta.session.add(entry)
-		meta.session.commit()
+		try:
+			entry = LogEntry(text)
+			meta.session.add(entry)
+			meta.session.commit()
+		except:
+			meta.session.rollback()
+			raise
 
 		self.redirect('/log/%d' % entry.id)
 
@@ -26,6 +32,7 @@ class LifeLogTag(BaseHandler):
 	"""Life log tag"""
 	_path = '/log/([a-z]+)'
 
+	@web.authenticated
 	def get(self, tag):
 		offset = int(self.get_argument('start', '0'))
 
@@ -36,6 +43,7 @@ class LifeLogEntry(BaseHandler):
 	"""Life log entry"""
 	_path = '/log/([0-9]+)'
 
+	@web.authenticated
 	def get(self, entry_id):
 		entry_id = int(entry_id)
 

@@ -23,7 +23,7 @@ options.define("port", default=8888, help="run on the given port", type=int)
 if __name__ == "__main__":
     options.parse_command_line()
 
-    http_server = httpserver.HTTPServer(app)
+    http_server = httpserver.HTTPServer(app, xheaders=True)
     http_server.listen(options.options.port)
 
     log.info("Serving blog on http://127.0.0.1:%d" % options.options.port)
